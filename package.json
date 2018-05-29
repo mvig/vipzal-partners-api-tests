@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "api-tests-dev": "newman run tests/test-api-partners.postman_collection.json  --reporters cli,junit,html --reporter-junit-export newman.xml --reporter-html-export newman.html"
+    "api-tests-dev": "newman run tests/test-api-partners.postman_collection.json -e tests/dev.vipzal.dev.vip-zal.ru.postman_environment.json --reporters cli,junit,html --reporter-junit-export newman.xml --reporter-html-export newman.html"
   },
   "author": "Igor Mets",
   "dependencies": {
