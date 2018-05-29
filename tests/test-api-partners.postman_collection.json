@@ -1,0 +1,2991 @@
+{
+	"info": {
+		"_postman_id": "fc7e68f0-b25b-4210-a316-653472bca6c0",
+		"name": "test-api-partners",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "query",
+			"description": "",
+			"item": [
+				{
+					"name": "/security/auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "edcdc7da-bb7b-4c9e-91c5-8bf68dfe68cd",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"//tests[\"Code is 0\"] = jsonData.code === 0;",
+									"//tests[\"Message is OK\"] = jsonData.message === \"OK\";",
+									"//tests[\"Body matches string\"] = responseBody.has(\"sUpJD2uuMNO0s_kAXAtIcR-ySJnuVeOt\");",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.result);",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "646c87d9-393d-4af7-8821-e6f1e3d55f82",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n  \"login\": \"{{user}}\",\r\n  \"password\": \"{{pass}}\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/security/auth",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"security",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/query/terminals",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6c845d2a-f66e-46e9-8270-6f7ac3e71e0a",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Controls Accept header\"] = (postman.getResponseHeader('Content-Type'))===\"application/json; charset=UTF-8\";",
+									"tests[\"body contains result\"] = responseBody.has(\"result\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/terminals",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"terminals"
+							]
+						},
+						"description": "Запрос доступных терминалов"
+					},
+					"response": [
+						{
+							"id": "5448e179-0c45-468b-b646-0c3fc921f3e6",
+							"name": "/query/terminals2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/terminals",
+									"protocol": "http",
+									"host": [
+										"{{stage}}",
+										"{{domain}}"
+									],
+									"path": [
+										"partner",
+										"api",
+										"{{ver}}",
+										"query",
+										"terminals"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 23 May 2018 10:45:51 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.10.3 (Ubuntu)",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Debug",
+									"value": "/usr/local/www/vipzal/dev/current/web",
+									"name": "X-Debug",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": [\n        {\n            \"name\": \"Шереметьево-F\",\n            \"id\": 1,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Шереметьево\",\n                \"iata\": \"SVO\",\n                \"city\": {\n                    \"name\": \"Москва\",\n                    \"iata\": \"MOW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Шереметьево-D (Федеральный)\",\n            \"id\": 2,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Шереметьево\",\n                \"iata\": \"SVO\",\n                \"city\": {\n                    \"name\": \"Москва\",\n                    \"iata\": \"MOW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Шереметьево-D (Международный)\",\n            \"id\": 3,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Шереметьево\",\n                \"iata\": \"SVO\",\n                \"city\": {\n                    \"name\": \"Москва\",\n                    \"iata\": \"MOW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Шереметьево-E\",\n            \"id\": 4,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Шереметьево\",\n                \"iata\": \"SVO\",\n                \"city\": {\n                    \"name\": \"Москва\",\n                    \"iata\": \"MOW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Шереметьево-C\",\n            \"id\": 5,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Шереметьево\",\n                \"iata\": \"SVO\",\n                \"city\": {\n                    \"name\": \"Москва\",\n                    \"iata\": \"MOW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Внуково Вип-терминал\",\n            \"id\": 6,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Внуково\",\n                \"iata\": \"VKO\",\n                \"city\": {\n                    \"name\": \"Москва\",\n                    \"iata\": \"MOW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Внуково Терминал-А (Федеральный)\",\n            \"id\": 7,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Внуково\",\n                \"iata\": \"VKO\",\n                \"city\": {\n                    \"name\": \"Москва\",\n                    \"iata\": \"MOW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Пулково-1 (внутренние)\",\n            \"id\": 9,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Пулково\",\n                \"iata\": \"LED\",\n                \"city\": {\n                    \"name\": \"Санкт-Петербург\",\n                    \"iata\": \"LED\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Абу-Даби\",\n            \"id\": 12,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Абу-Даби\",\n                \"iata\": \"AUH\",\n                \"city\": {\n                    \"name\": \"Абу-Даби\",\n                    \"iata\": \"AUH\",\n                    \"country\": {\n                        \"name\": \"ОАЭ\",\n                        \"code\": \"AE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Анкара\",\n            \"id\": 13,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Анкара Эсенбога\",\n                \"iata\": \"ESB\",\n                \"city\": {\n                    \"name\": \"Анкара\",\n                    \"iata\": \"ESB\",\n                    \"country\": {\n                        \"name\": \"Турция\",\n                        \"code\": \"TR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Амстердам\",\n            \"id\": 14,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Схипхол\",\n                \"iata\": \"AMS\",\n                \"city\": {\n                    \"name\": \"Амстердам\",\n                    \"iata\": \"AMS\",\n                    \"country\": {\n                        \"name\": \"Нидерланды\",\n                        \"code\": \"NL\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Анталия\",\n            \"id\": 15,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Анталия\",\n                \"iata\": \"AYT\",\n                \"city\": {\n                    \"name\": \"Анталия\",\n                    \"iata\": \"AYT\",\n                    \"country\": {\n                        \"name\": \"Турция\",\n                        \"code\": \"TR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Афины\",\n            \"id\": 16,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Элефтериос Венизелос\",\n                \"iata\": \"ATH\",\n                \"city\": {\n                    \"name\": \"Афины\",\n                    \"iata\": \"ATH\",\n                    \"country\": {\n                        \"name\": \"Греция\",\n                        \"code\": \"GR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Бангкок\",\n            \"id\": 17,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Суварнабхуми\",\n                \"iata\": \"BKK\",\n                \"city\": {\n                    \"name\": \"Бангкок\",\n                    \"iata\": \"BKK\",\n                    \"country\": {\n                        \"name\": \"Таиланд\",\n                        \"code\": \"TH\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Барселона\",\n            \"id\": 18,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Эль-Прат\",\n                \"iata\": \"BCN\",\n                \"city\": {\n                    \"name\": \"Барселона\",\n                    \"iata\": \"BCN\",\n                    \"country\": {\n                        \"name\": \"Испания\",\n                        \"code\": \"ES\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Белград\",\n            \"id\": 19,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Никола Тесла Белград\",\n                \"iata\": \"BEG\",\n                \"city\": {\n                    \"name\": \"Белград\",\n                    \"iata\": \"BEG\",\n                    \"country\": {\n                        \"name\": \"Сербия\",\n                        \"code\": \"RS\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Берлин\",\n            \"id\": 20,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Шёнефельд\",\n                \"iata\": \"SXF\",\n                \"city\": {\n                    \"name\": \"Берлин\",\n                    \"iata\": \"BER\",\n                    \"country\": {\n                        \"name\": \"Германия\",\n                        \"code\": \"DE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Брюссель\",\n            \"id\": 21,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Аэропорт Брюсселя\",\n                \"iata\": \"BRU\",\n                \"city\": {\n                    \"name\": \"Брюссель\",\n                    \"iata\": \"BRU\",\n                    \"country\": {\n                        \"name\": \"Бельгия\",\n                        \"code\": \"BE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Будапешт\",\n            \"id\": 22,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Ференц Лист\",\n                \"iata\": \"BUD\",\n                \"city\": {\n                    \"name\": \"Будапешт\",\n                    \"iata\": \"BUD\",\n                    \"country\": {\n                        \"name\": \"Венгрия\",\n                        \"code\": \"HU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Бургас\",\n            \"id\": 23,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Бургас\",\n                \"iata\": \"BOJ\",\n                \"city\": {\n                    \"name\": \"Бургас\",\n                    \"iata\": \"BOJ\",\n                    \"country\": {\n                        \"name\": \"Болгария\",\n                        \"code\": \"BG\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Варна\",\n            \"id\": 24,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Варна\",\n                \"iata\": \"VAR\",\n                \"city\": {\n                    \"name\": \"Варна\",\n                    \"iata\": \"VAR\",\n                    \"country\": {\n                        \"name\": \"Болгария\",\n                        \"code\": \"BG\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Варшава\",\n            \"id\": 25,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Фредерик Шопен\",\n                \"iata\": \"WAW\",\n                \"city\": {\n                    \"name\": \"Варшава\",\n                    \"iata\": \"WAW\",\n                    \"country\": {\n                        \"name\": \"Польша\",\n                        \"code\": \"PL\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Вена\",\n            \"id\": 26,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Вена-Швехат\",\n                \"iata\": \"VIE\",\n                \"city\": {\n                    \"name\": \"Вена\",\n                    \"iata\": \"VIE\",\n                    \"country\": {\n                        \"name\": \"Австрия\",\n                        \"code\": \"AT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Венеция\",\n            \"id\": 27,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Марко Поло\",\n                \"iata\": \"VCE\",\n                \"city\": {\n                    \"name\": \"Венеция\",\n                    \"iata\": \"VCE\",\n                    \"country\": {\n                        \"name\": \"Италия\",\n                        \"code\": \"IT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Вильнюс\",\n            \"id\": 28,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Вильнюс\",\n                \"iata\": \"VNO\",\n                \"city\": {\n                    \"name\": \"Вильнюс\",\n                    \"iata\": \"VNO\",\n                    \"country\": {\n                        \"name\": \"Литва\",\n                        \"code\": \"LT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Гамбург\",\n            \"id\": 29,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Аэропорт Гамбурга\",\n                \"iata\": \"HAM\",\n                \"city\": {\n                    \"name\": \"Гамбург\",\n                    \"iata\": \"HAM\",\n                    \"country\": {\n                        \"name\": \"Германия\",\n                        \"code\": \"DE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Ганновер\",\n            \"id\": 30,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Ганновер-Лангенхаген\",\n                \"iata\": \"HAJ\",\n                \"city\": {\n                    \"name\": \"Ганновер\",\n                    \"iata\": \"HAJ\",\n                    \"country\": {\n                        \"name\": \"Германия\",\n                        \"code\": \"DE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Гонконг\",\n            \"id\": 31,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Гонконг\",\n                \"iata\": \"HKG\",\n                \"city\": {\n                    \"name\": \"Гонконг\",\n                    \"iata\": \"HKG\",\n                    \"country\": {\n                        \"name\": \"Гонконг\",\n                        \"code\": \"HK\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Денпасар\",\n            \"id\": 32,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Нгурах-Рай\",\n                \"iata\": \"DPS\",\n                \"city\": {\n                    \"name\": \"Денпасар\",\n                    \"iata\": \"DPS\",\n                    \"country\": {\n                        \"name\": \"Индонезия\",\n                        \"code\": \"ID\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Дублин\",\n            \"id\": 33,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Дублин\",\n                \"iata\": \"DUB\",\n                \"city\": {\n                    \"name\": \"Дублин\",\n                    \"iata\": \"DUB\",\n                    \"country\": {\n                        \"name\": \"Ирландия\",\n                        \"code\": \"IE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Дюссельдорф\",\n            \"id\": 34,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Дюссельдорф\",\n                \"iata\": \"DUS\",\n                \"city\": {\n                    \"name\": \"Дюссельдорф\",\n                    \"iata\": \"DUS\",\n                    \"country\": {\n                        \"name\": \"Германия\",\n                        \"code\": \"DE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Женева\",\n            \"id\": 35,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Женева\",\n                \"iata\": \"GVA\",\n                \"city\": {\n                    \"name\": \"Женева\",\n                    \"iata\": \"GVA\",\n                    \"country\": {\n                        \"name\": \"Швейцария\",\n                        \"code\": \"CH\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Загреб\",\n            \"id\": 36,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Загреб (Плесо)\",\n                \"iata\": \"ZAG\",\n                \"city\": {\n                    \"name\": \"Загреб\",\n                    \"iata\": \"ZAG\",\n                    \"country\": {\n                        \"name\": \"Хорватия\",\n                        \"code\": \"HR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Ираклион\",\n            \"id\": 37,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Никос Казандзакис\",\n                \"iata\": \"HER\",\n                \"city\": {\n                    \"name\": \"Ираклион\",\n                    \"iata\": \"HER\",\n                    \"country\": {\n                        \"name\": \"Греция\",\n                        \"code\": \"GR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Карловы Вары\",\n            \"id\": 38,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Карловы Вары\",\n                \"iata\": \"KLV\",\n                \"city\": {\n                    \"name\": \"Карловы Вары\",\n                    \"iata\": \"KLV\",\n                    \"country\": {\n                        \"name\": \"Чехия\",\n                        \"code\": \"CZ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Кельн\",\n            \"id\": 39,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Кёльн/Бонн\",\n                \"iata\": \"CGN\",\n                \"city\": {\n                    \"name\": \"Кёльн\",\n                    \"iata\": \"CGN\",\n                    \"country\": {\n                        \"name\": \"Германия\",\n                        \"code\": \"DE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Копенгаген\",\n            \"id\": 40,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Каструп\",\n                \"iata\": \"CPH\",\n                \"city\": {\n                    \"name\": \"Копенгаген\",\n                    \"iata\": \"CPH\",\n                    \"country\": {\n                        \"name\": \"Дания\",\n                        \"code\": \"DK\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Корфу\",\n            \"id\": 41,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Иоаннис Каподистрия\",\n                \"iata\": \"CFU\",\n                \"city\": {\n                    \"name\": \"Корфу\",\n                    \"iata\": \"CFU\",\n                    \"country\": {\n                        \"name\": \"Греция\",\n                        \"code\": \"GR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Лиссабон\",\n            \"id\": 42,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Портела\",\n                \"iata\": \"LIS\",\n                \"city\": {\n                    \"name\": \"Лиссабон\",\n                    \"iata\": \"LIS\",\n                    \"country\": {\n                        \"name\": \"Португалия\",\n                        \"code\": \"PT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Лондон Хитроу\",\n            \"id\": 43,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Хитроу\",\n                \"iata\": \"LHR\",\n                \"city\": {\n                    \"name\": \"Лондон\",\n                    \"iata\": \"LON\",\n                    \"country\": {\n                        \"name\": \"Великобритания\",\n                        \"code\": \"GB\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Любляна\",\n            \"id\": 44,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Йоже Пучник (Брник) \",\n                \"iata\": \"LJU\",\n                \"city\": {\n                    \"name\": \"Любляна\",\n                    \"iata\": \"LJU\",\n                    \"country\": {\n                        \"name\": \"Словения\",\n                        \"code\": \"SI\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Маврикий\",\n            \"id\": 45,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Сивусагур Рамгулама\",\n                \"iata\": \"MRU\",\n                \"city\": {\n                    \"name\": \"Плаисанс\",\n                    \"iata\": \"MRU\",\n                    \"country\": {\n                        \"name\": \"Маврикий\",\n                        \"code\": \"MU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Мадрид\",\n            \"id\": 46,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Барахас\",\n                \"iata\": \"MAD\",\n                \"city\": {\n                    \"name\": \"Мадрид\",\n                    \"iata\": \"MAD\",\n                    \"country\": {\n                        \"name\": \"Испания\",\n                        \"code\": \"ES\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Мальта\",\n            \"id\": 47,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Мальта\",\n                \"iata\": \"MLA\",\n                \"city\": {\n                    \"name\": \"Гуджа\",\n                    \"iata\": \"MLA\",\n                    \"country\": {\n                        \"name\": \"Мальта\",\n                        \"code\": \"MT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Милан Мальпенса\",\n            \"id\": 48,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Мальпенса\",\n                \"iata\": \"MXP\",\n                \"city\": {\n                    \"name\": \"Милан\",\n                    \"iata\": \"MIL\",\n                    \"country\": {\n                        \"name\": \"Италия\",\n                        \"code\": \"IT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Мумбай\",\n            \"id\": 49,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Чатрапати Шиваджи\",\n                \"iata\": \"BOM\",\n                \"city\": {\n                    \"name\": \"Мумбаи\",\n                    \"iata\": \"BOM\",\n                    \"country\": {\n                        \"name\": \"Индия\",\n                        \"code\": \"IN\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Мюнхен\",\n            \"id\": 50,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Франц Йозеф Штраус\",\n                \"iata\": \"MUC\",\n                \"city\": {\n                    \"name\": \"Мюнхен\",\n                    \"iata\": \"MUC\",\n                    \"country\": {\n                        \"name\": \"Германия\",\n                        \"code\": \"DE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Ницца\",\n            \"id\": 51,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Ницца Лазурный Берег\",\n                \"iata\": \"NCE\",\n                \"city\": {\n                    \"name\": \"Ницца\",\n                    \"iata\": \"NCE\",\n                    \"country\": {\n                        \"name\": \"Франция\",\n                        \"code\": \"FR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Нюрнберг\",\n            \"id\": 52,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Нюрнберг\",\n                \"iata\": \"NUE\",\n                \"city\": {\n                    \"name\": \"Нюрнберг\",\n                    \"iata\": \"NUE\",\n                    \"country\": {\n                        \"name\": \"Германия\",\n                        \"code\": \"DE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Париж Шарль-де-Голль\",\n            \"id\": 53,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Шарль-де-Голль\",\n                \"iata\": \"CDG\",\n                \"city\": {\n                    \"name\": \"Париж\",\n                    \"iata\": \"PAR\",\n                    \"country\": {\n                        \"name\": \"Франция\",\n                        \"code\": \"FR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Пекин\",\n            \"id\": 54,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Шоуду\",\n                \"iata\": \"PEK\",\n                \"city\": {\n                    \"name\": \"Пекин\",\n                    \"iata\": \"BJS\",\n                    \"country\": {\n                        \"name\": \"Китай\",\n                        \"code\": \"CN\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Прага\",\n            \"id\": 55,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Вацлава Гавела (Рузине)\",\n                \"iata\": \"PRG\",\n                \"city\": {\n                    \"name\": \"Прага\",\n                    \"iata\": \"PRG\",\n                    \"country\": {\n                        \"name\": \"Чехия\",\n                        \"code\": \"CZ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Пунта-Кана\",\n            \"id\": 56,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Пунта-Кана\",\n                \"iata\": \"PUJ\",\n                \"city\": {\n                    \"name\": \"Пунта-Кана\",\n                    \"iata\": \"PUJ\",\n                    \"country\": {\n                        \"name\": \"Доминиканская Республика\",\n                        \"code\": \"DO\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Рига\",\n            \"id\": 57,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Рига\",\n                \"iata\": \"RIX\",\n                \"city\": {\n                    \"name\": \"Рига\",\n                    \"iata\": \"RIX\",\n                    \"country\": {\n                        \"name\": \"Латвия\",\n                        \"code\": \"LV\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Рим\",\n            \"id\": 58,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Леонардо да Винчи (Фьюмичино)\",\n                \"iata\": \"FCO\",\n                \"city\": {\n                    \"name\": \"Рим\",\n                    \"iata\": \"ROM\",\n                    \"country\": {\n                        \"name\": \"Италия\",\n                        \"code\": \"IT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Родос\",\n            \"id\": 59,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Диагорас\",\n                \"iata\": \"RHO\",\n                \"city\": {\n                    \"name\": \"Родос\",\n                    \"iata\": \"RHO\",\n                    \"country\": {\n                        \"name\": \"Греция\",\n                        \"code\": \"GR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Салоники\",\n            \"id\": 60,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Македония\",\n                \"iata\": \"SKG\",\n                \"city\": {\n                    \"name\": \"Салоники\",\n                    \"iata\": \"SKG\",\n                    \"country\": {\n                        \"name\": \"Греция\",\n                        \"code\": \"GR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Сингапур\",\n            \"id\": 61,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Чанги\",\n                \"iata\": \"SIN\",\n                \"city\": {\n                    \"name\": \"Сингапур\",\n                    \"iata\": \"SIN\",\n                    \"country\": {\n                        \"name\": \"Сингапур\",\n                        \"code\": \"SG\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"София\",\n            \"id\": 62,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"София\",\n                \"iata\": \"SOF\",\n                \"city\": {\n                    \"name\": \"София\",\n                    \"iata\": \"SOF\",\n                    \"country\": {\n                        \"name\": \"Болгария\",\n                        \"code\": \"BG\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Стамбул\",\n            \"id\": 63,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Ататюрк\",\n                \"iata\": \"IST\",\n                \"city\": {\n                    \"name\": \"Стамбул\",\n                    \"iata\": \"IST\",\n                    \"country\": {\n                        \"name\": \"Турция\",\n                        \"code\": \"TR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Стокгольм\",\n            \"id\": 64,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Стокгольм-Арланда\",\n                \"iata\": \"ARN\",\n                \"city\": {\n                    \"name\": \"Стокгольм\",\n                    \"iata\": \"STO\",\n                    \"country\": {\n                        \"name\": \"Швеция\",\n                        \"code\": \"SE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Таллинн\",\n            \"id\": 65,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Юлемисте\",\n                \"iata\": \"TLL\",\n                \"city\": {\n                    \"name\": \"Таллин\",\n                    \"iata\": \"TLL\",\n                    \"country\": {\n                        \"name\": \"Эстония\",\n                        \"code\": \"EE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Тель-Авив\",\n            \"id\": 66,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Бен-Гурион\",\n                \"iata\": \"TLV\",\n                \"city\": {\n                    \"name\": \"Тель-Авив\",\n                    \"iata\": \"TLV\",\n                    \"country\": {\n                        \"name\": \"Израиль\",\n                        \"code\": \"IL\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Франкфурт\",\n            \"id\": 67,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Франкфурт-на-Майне\",\n                \"iata\": \"FRA\",\n                \"city\": {\n                    \"name\": \"Франкфурт-на-Майне\",\n                    \"iata\": \"FRA\",\n                    \"country\": {\n                        \"name\": \"Германия\",\n                        \"code\": \"DE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Хельсинки\",\n            \"id\": 68,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Хельсинки-Вантаа\",\n                \"iata\": \"HEL\",\n                \"city\": {\n                    \"name\": \"Хельсинки\",\n                    \"iata\": \"HEL\",\n                    \"country\": {\n                        \"name\": \"Финляндия\",\n                        \"code\": \"FI\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Цюрих\",\n            \"id\": 69,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Цюрих\",\n                \"iata\": \"ZRH\",\n                \"city\": {\n                    \"name\": \"Цюрих\",\n                    \"iata\": \"ZRH\",\n                    \"country\": {\n                        \"name\": \"Швейцария\",\n                        \"code\": \"CH\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Штутгарт\",\n            \"id\": 70,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Штутгарт\",\n                \"iata\": \"STR\",\n                \"city\": {\n                    \"name\": \"Штутгарт\",\n                    \"iata\": \"STR\",\n                    \"country\": {\n                        \"name\": \"Германия\",\n                        \"code\": \"DE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Актау\",\n            \"id\": 71,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Актау\",\n                \"iata\": \"SCO\",\n                \"city\": {\n                    \"name\": \"Актау\",\n                    \"iata\": \"SCO\",\n                    \"country\": {\n                        \"name\": \"Казахстан\",\n                        \"code\": \"KZ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Алматы\",\n            \"id\": 72,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Алматы\",\n                \"iata\": \"ALA\",\n                \"city\": {\n                    \"name\": \"Алматы\",\n                    \"iata\": \"ALA\",\n                    \"country\": {\n                        \"name\": \"Казахстан\",\n                        \"code\": \"KZ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Анапа\",\n            \"id\": 73,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Витязево\",\n                \"iata\": \"AAQ\",\n                \"city\": {\n                    \"name\": \"Анапа\",\n                    \"iata\": \"AAQ\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Астана\",\n            \"id\": 74,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Астана\",\n                \"iata\": \"TSE\",\n                \"city\": {\n                    \"name\": \"Астана\",\n                    \"iata\": \"TSE\",\n                    \"country\": {\n                        \"name\": \"Казахстан\",\n                        \"code\": \"KZ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Астрахань\",\n            \"id\": 75,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Астрахань\",\n                \"iata\": \"ASF\",\n                \"city\": {\n                    \"name\": \"Астрахань\",\n                    \"iata\": \"ASF\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Баку\",\n            \"id\": 76,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Гейдар Алиев\",\n                \"iata\": \"GYD\",\n                \"city\": {\n                    \"name\": \"Баку\",\n                    \"iata\": \"BAK\",\n                    \"country\": {\n                        \"name\": \"Азербайджан\",\n                        \"code\": \"AZ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Барнаул\",\n            \"id\": 77,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Барнаул\",\n                \"iata\": \"BAX\",\n                \"city\": {\n                    \"name\": \"Барнаул\",\n                    \"iata\": \"BAX\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Бишкек\",\n            \"id\": 78,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Манас\",\n                \"iata\": \"FRU\",\n                \"city\": {\n                    \"name\": \"Бишкек\",\n                    \"iata\": \"FRU\",\n                    \"country\": {\n                        \"name\": \"Киргизия\",\n                        \"code\": \"KG\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Братск\",\n            \"id\": 79,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Братск\",\n                \"iata\": \"BTK\",\n                \"city\": {\n                    \"name\": \"Братск\",\n                    \"iata\": \"BTK\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Владивосток\",\n            \"id\": 80,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Владивосток\",\n                \"iata\": \"VVO\",\n                \"city\": {\n                    \"name\": \"Владивосток\",\n                    \"iata\": \"VVO\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Владикавказ\",\n            \"id\": 81,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Беслан\",\n                \"iata\": \"OGZ\",\n                \"city\": {\n                    \"name\": \"Владикавказ\",\n                    \"iata\": \"OGZ\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Волгоград\",\n            \"id\": 82,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Волгоград\",\n                \"iata\": \"VOG\",\n                \"city\": {\n                    \"name\": \"Волгоград\",\n                    \"iata\": \"VOG\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Воронеж\",\n            \"id\": 83,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Чертовицкое\",\n                \"iata\": \"VOZ\",\n                \"city\": {\n                    \"name\": \"Воронеж\",\n                    \"iata\": \"VOZ\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Днепропетровск\",\n            \"id\": 84,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Днепропетровск\",\n                \"iata\": \"DNK\",\n                \"city\": {\n                    \"name\": \"Днепропетровск\",\n                    \"iata\": \"DNK\",\n                    \"country\": {\n                        \"name\": \"Украина\",\n                        \"code\": \"UA\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Донецк\",\n            \"id\": 85,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Донецк\",\n                \"iata\": \"DOK\",\n                \"city\": {\n                    \"name\": \"Донецк\",\n                    \"iata\": \"DOK\",\n                    \"country\": {\n                        \"name\": \"Украина\",\n                        \"code\": \"UA\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Екатеринбург\",\n            \"id\": 86,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Кольцово\",\n                \"iata\": \"SVX\",\n                \"city\": {\n                    \"name\": \"Екатеринбург\",\n                    \"iata\": \"SVX\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Ереван\",\n            \"id\": 87,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Звартноц\",\n                \"iata\": \"EVN\",\n                \"city\": {\n                    \"name\": \"Ереван\",\n                    \"iata\": \"EVN\",\n                    \"country\": {\n                        \"name\": \"Армения\",\n                        \"code\": \"AM\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Ижевск\",\n            \"id\": 88,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Ижевск\",\n                \"iata\": \"IJK\",\n                \"city\": {\n                    \"name\": \"Ижевск\",\n                    \"iata\": \"IJK\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Иркутск\",\n            \"id\": 89,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Иркутск\",\n                \"iata\": \"IKT\",\n                \"city\": {\n                    \"name\": \"Иркутск\",\n                    \"iata\": \"IKT\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Казань\",\n            \"id\": 90,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Казань\",\n                \"iata\": \"KZN\",\n                \"city\": {\n                    \"name\": \"Казань\",\n                    \"iata\": \"KZN\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Калининград\",\n            \"id\": 91,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Калининград\",\n                \"iata\": \"KGD\",\n                \"city\": {\n                    \"name\": \"Калининград\",\n                    \"iata\": \"KGD\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Караганда\",\n            \"id\": 92,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Карагандинский международный аэропорт\",\n                \"iata\": \"KGF\",\n                \"city\": {\n                    \"name\": \"Караганда\",\n                    \"iata\": \"KGF\",\n                    \"country\": {\n                        \"name\": \"Казахстан\",\n                        \"code\": \"KZ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Киев Борисполь\",\n            \"id\": 93,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Борисполь\",\n                \"iata\": \"KBP\",\n                \"city\": {\n                    \"name\": \"Киев\",\n                    \"iata\": \"KBP\",\n                    \"country\": {\n                        \"name\": \"Украина\",\n                        \"code\": \"UA\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Киев Жуляны\",\n            \"id\": 94,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Жуляны\",\n                \"iata\": \"IEV\",\n                \"city\": {\n                    \"name\": \"Киев\",\n                    \"iata\": \"KBP\",\n                    \"country\": {\n                        \"name\": \"Украина\",\n                        \"code\": \"UA\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Кишинев\",\n            \"id\": 95,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Кишинёв\",\n                \"iata\": \"KIV\",\n                \"city\": {\n                    \"name\": \"Кишинёв\",\n                    \"iata\": \"KIV\",\n                    \"country\": {\n                        \"name\": \"Молдавия\",\n                        \"code\": \"MD\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Краснодар\",\n            \"id\": 96,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Пашковский\",\n                \"iata\": \"KRR\",\n                \"city\": {\n                    \"name\": \"Краснодар\",\n                    \"iata\": \"KRR\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Красноярск\",\n            \"id\": 97,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Емельяново\",\n                \"iata\": \"KJA\",\n                \"city\": {\n                    \"name\": \"Красноярск\",\n                    \"iata\": \"KJA\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Львов\",\n            \"id\": 98,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Скнилов\",\n                \"iata\": \"LWO\",\n                \"city\": {\n                    \"name\": \"Львов\",\n                    \"iata\": \"LWO\",\n                    \"country\": {\n                        \"name\": \"Украина\",\n                        \"code\": \"UA\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Минеральные Воды\",\n            \"id\": 99,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Минеральные Воды\",\n                \"iata\": \"MRV\",\n                \"city\": {\n                    \"name\": \"Минеральные Воды\",\n                    \"iata\": \"MRV\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Минск\",\n            \"id\": 100,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Национальный аэропорт Минск\",\n                \"iata\": \"MSQ\",\n                \"city\": {\n                    \"name\": \"Минск\",\n                    \"iata\": \"MSQ\",\n                    \"country\": {\n                        \"name\": \"Беларусь\",\n                        \"code\": \"BY\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Мурманск\",\n            \"id\": 101,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Мурманск\",\n                \"iata\": \"MMK\",\n                \"city\": {\n                    \"name\": \"Мурманск\",\n                    \"iata\": \"MMK\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Нижний Новгород\",\n            \"id\": 102,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Стригино\",\n                \"iata\": \"GOJ\",\n                \"city\": {\n                    \"name\": \"Нижний Новгород\",\n                    \"iata\": \"GOJ\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Новокузнецк\",\n            \"id\": 103,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Новокузнецк\",\n                \"iata\": \"NOZ\",\n                \"city\": {\n                    \"name\": \"Новокузнецк\",\n                    \"iata\": \"NOZ\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Новосибирск\",\n            \"id\": 104,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Толмачево\",\n                \"iata\": \"OVB\",\n                \"city\": {\n                    \"name\": \"Новосибирск\",\n                    \"iata\": \"OVB\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Ноябрьск\",\n            \"id\": 105,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Ноябрьск\",\n                \"iata\": \"NOJ\",\n                \"city\": {\n                    \"name\": \"Ноябрьск\",\n                    \"iata\": \"NOJ\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Одесса\",\n            \"id\": 106,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Одесса\",\n                \"iata\": \"ODS\",\n                \"city\": {\n                    \"name\": \"Одесса\",\n                    \"iata\": \"ODS\",\n                    \"country\": {\n                        \"name\": \"Украина\",\n                        \"code\": \"UA\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Омск\",\n            \"id\": 107,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Омск\",\n                \"iata\": \"OMS\",\n                \"city\": {\n                    \"name\": \"Омск\",\n                    \"iata\": \"OMS\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Пермь\",\n            \"id\": 108,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Большое Савино\",\n                \"iata\": \"PEE\",\n                \"city\": {\n                    \"name\": \"Пермь\",\n                    \"iata\": \"PEE\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Ростов-на-Дону\",\n            \"id\": 109,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Ростов\",\n                \"iata\": \"ROV\",\n                \"city\": {\n                    \"name\": \"Ростов-на-Дону\",\n                    \"iata\": \"ROV\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Самара\",\n            \"id\": 110,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Курумоч\",\n                \"iata\": \"KUF\",\n                \"city\": {\n                    \"name\": \"Самара\",\n                    \"iata\": \"KUF\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Саратов\",\n            \"id\": 112,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Саратов\",\n                \"iata\": \"RTW\",\n                \"city\": {\n                    \"name\": \"Саратов\",\n                    \"iata\": \"RTW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Симферополь\",\n            \"id\": 113,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Симферополь\",\n                \"iata\": \"SIP\",\n                \"city\": {\n                    \"name\": \"Симферополь\",\n                    \"iata\": \"SIP\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Сочи (Федеральный)\",\n            \"id\": 114,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Адлер - Сочи\",\n                \"iata\": \"AER\",\n                \"city\": {\n                    \"name\": \"Адлер (Сочи)\",\n                    \"iata\": \"AER\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Сургут\",\n            \"id\": 115,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Сургут\",\n                \"iata\": \"SGC\",\n                \"city\": {\n                    \"name\": \"Сургут\",\n                    \"iata\": \"SGC\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Ташкент\",\n            \"id\": 116,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Ташкент (Южный)\",\n                \"iata\": \"TAS\",\n                \"city\": {\n                    \"name\": \"Ташкент\",\n                    \"iata\": \"TAS\",\n                    \"country\": {\n                        \"name\": \"Узбекистан\",\n                        \"code\": \"UZ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Томск\",\n            \"id\": 117,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Богашево\",\n                \"iata\": \"TOF\",\n                \"city\": {\n                    \"name\": \"Томск\",\n                    \"iata\": \"TOF\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Уфа\",\n            \"id\": 118,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Уфа\",\n                \"iata\": \"UFA\",\n                \"city\": {\n                    \"name\": \"Уфа\",\n                    \"iata\": \"UFA\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Хабаровск\",\n            \"id\": 119,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Хабаровск (Новый)\",\n                \"iata\": \"KHV\",\n                \"city\": {\n                    \"name\": \"Хабаровск\",\n                    \"iata\": \"KHV\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Челябинск\",\n            \"id\": 120,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Челябинск\",\n                \"iata\": \"CEK\",\n                \"city\": {\n                    \"name\": \"Челябинск\",\n                    \"iata\": \"CEK\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Якутск\",\n            \"id\": 121,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Якутск\",\n                \"iata\": \"YKS\",\n                \"city\": {\n                    \"name\": \"Якутск\",\n                    \"iata\": \"YKS\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Зальцбург\",\n            \"id\": 122,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"В. А. Моцарт\",\n                \"iata\": \"SZG\",\n                \"city\": {\n                    \"name\": \"Зальцбург\",\n                    \"iata\": \"SZG\",\n                    \"country\": {\n                        \"name\": \"Австрия\",\n                        \"code\": \"AT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Домодедово (Федеральный)\",\n            \"id\": 123,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Домодедово\",\n                \"iata\": \"DME\",\n                \"city\": {\n                    \"name\": \"Москва\",\n                    \"iata\": \"MOW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Сочи (Международный)\",\n            \"id\": 124,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Адлер - Сочи\",\n                \"iata\": \"AER\",\n                \"city\": {\n                    \"name\": \"Адлер (Сочи)\",\n                    \"iata\": \"AER\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Домодедово (Международный)\",\n            \"id\": 125,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Домодедово\",\n                \"iata\": \"DME\",\n                \"city\": {\n                    \"name\": \"Москва\",\n                    \"iata\": \"MOW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Внуково Терминал-А (Международный)\",\n            \"id\": 126,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Внуково\",\n                \"iata\": \"VKO\",\n                \"city\": {\n                    \"name\": \"Москва\",\n                    \"iata\": \"MOW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Пулково-1 (международные)\",\n            \"id\": 127,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Пулково\",\n                \"iata\": \"LED\",\n                \"city\": {\n                    \"name\": \"Санкт-Петербург\",\n                    \"iata\": \"LED\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Центр Деловой Авиации (ЦДА) Домодедово\",\n            \"id\": 129,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Домодедово\",\n                \"iata\": \"DME\",\n                \"city\": {\n                    \"name\": \"Москва\",\n                    \"iata\": \"MOW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Дубай Ahlan\",\n            \"id\": 130,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Дубай\",\n                \"iata\": \"DXB\",\n                \"city\": {\n                    \"name\": \"Дубай\",\n                    \"iata\": \"DXB\",\n                    \"country\": {\n                        \"name\": \"ОАЭ\",\n                        \"code\": \"AE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Дубай Marhaba\",\n            \"id\": 131,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Дубай\",\n                \"iata\": \"DXB\",\n                \"city\": {\n                    \"name\": \"Дубай\",\n                    \"iata\": \"DXB\",\n                    \"country\": {\n                        \"name\": \"ОАЭ\",\n                        \"code\": \"AE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Малага\",\n            \"id\": 132,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Коста-дель-Соль\",\n                \"iata\": \"AGP\",\n                \"city\": {\n                    \"name\": \"Малага\",\n                    \"iata\": \"AGP\",\n                    \"country\": {\n                        \"name\": \"Испания\",\n                        \"code\": \"ES\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Белгород\",\n            \"id\": 133,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Белгород\",\n                \"iata\": \"EGO\",\n                \"city\": {\n                    \"name\": \"Белгород\",\n                    \"iata\": \"EGO\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Горно-Алтайск\",\n            \"id\": 134,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Горно-Алтайск\",\n                \"iata\": \"RGK\",\n                \"city\": {\n                    \"name\": \"Горно-Алтайск\",\n                    \"iata\": \"RGK\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Ларнака\",\n            \"id\": 135,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Ларнака\",\n                \"iata\": \"LCA\",\n                \"city\": {\n                    \"name\": \"Ларнака\",\n                    \"iata\": \"LCA\",\n                    \"country\": {\n                        \"name\": \"Кипр\",\n                        \"code\": \"CY\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Нальчик\",\n            \"id\": 136,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Нальчик\",\n                \"iata\": \"NAL\",\n                \"city\": {\n                    \"name\": \"Нальчик\",\n                    \"iata\": \"NAL\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Килиманджаро\",\n            \"id\": 137,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Килиманджаро\",\n                \"iata\": \"JRO\",\n                \"city\": {\n                    \"name\": \"Килиманджаро\",\n                    \"iata\": \"JRO\",\n                    \"country\": {\n                        \"name\": \"Танзания\",\n                        \"code\": \"TZ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Аруша\",\n            \"id\": 138,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Аруша\",\n                \"iata\": \"ARK\",\n                \"city\": {\n                    \"name\": \"Аруша\",\n                    \"iata\": \"ARK\",\n                    \"country\": {\n                        \"name\": \"Танзания\",\n                        \"code\": \"TZ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Занзибар\",\n            \"id\": 139,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Занзибар\",\n                \"iata\": \"ZNZ\",\n                \"city\": {\n                    \"name\": \"Занзибар\",\n                    \"iata\": \"ZNZ\",\n                    \"country\": {\n                        \"name\": \"Танзания\",\n                        \"code\": \"TZ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Дар Эс-Салам\",\n            \"id\": 140,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Джулиус Ньерере\",\n                \"iata\": \"DAR\",\n                \"city\": {\n                    \"name\": \"Дар-эс-Салам\",\n                    \"iata\": \"DAR\",\n                    \"country\": {\n                        \"name\": \"Танзания\",\n                        \"code\": \"TZ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Назрань (Магас)\",\n            \"id\": 141,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Магас\",\n                \"iata\": \"IGT\",\n                \"city\": {\n                    \"name\": \"Назрань\",\n                    \"iata\": \"IGT\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Валенсия\",\n            \"id\": 142,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Валенсия\",\n                \"iata\": \"VLC\",\n                \"city\": {\n                    \"name\": \"Валенсия\",\n                    \"iata\": \"VLC\",\n                    \"country\": {\n                        \"name\": \"Испания\",\n                        \"code\": \"ES\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Аликанте\",\n            \"id\": 143,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Аликанте\",\n                \"iata\": \"ALC\",\n                \"city\": {\n                    \"name\": \"Аликанте\",\n                    \"iata\": \"ALC\",\n                    \"country\": {\n                        \"name\": \"Испания\",\n                        \"code\": \"ES\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Тиват\",\n            \"id\": 144,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Тиват\",\n                \"iata\": \"TIV\",\n                \"city\": {\n                    \"name\": \"Тиват\",\n                    \"iata\": \"TIV\",\n                    \"country\": {\n                        \"name\": \"Черногория\",\n                        \"code\": \"ME\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Подгорица\",\n            \"id\": 145,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Голубовци\",\n                \"iata\": \"TGD\",\n                \"city\": {\n                    \"name\": \"Подгорица\",\n                    \"iata\": \"TGD\",\n                    \"country\": {\n                        \"name\": \"Черногория\",\n                        \"code\": \"ME\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Нью-Йорк\",\n            \"id\": 146,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Джон Кеннеди\",\n                \"iata\": \"JFK\",\n                \"city\": {\n                    \"name\": \"Нью-Йорк\",\n                    \"iata\": \"NYC\",\n                    \"country\": {\n                        \"name\": \"США\",\n                        \"code\": \"US\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Майами\",\n            \"id\": 147,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Майами\",\n                \"iata\": \"MIA\",\n                \"city\": {\n                    \"name\": \"Майами\",\n                    \"iata\": \"MIA\",\n                    \"country\": {\n                        \"name\": \"США\",\n                        \"code\": \"US\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Лондон Гатвик\",\n            \"id\": 150,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Гатвик\",\n                \"iata\": \"LGW\",\n                \"city\": {\n                    \"name\": \"Лондон\",\n                    \"iata\": \"LON\",\n                    \"country\": {\n                        \"name\": \"Великобритания\",\n                        \"code\": \"GB\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Душанбе\",\n            \"id\": 151,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Душанбе\",\n                \"iata\": \"DYU\",\n                \"city\": {\n                    \"name\": \"Душанбе\",\n                    \"iata\": \"DYU\",\n                    \"country\": {\n                        \"name\": \"Таджикистан\",\n                        \"code\": \"TJ\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Тюмень\",\n            \"id\": 152,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Рощино\",\n                \"iata\": \"TJM\",\n                \"city\": {\n                    \"name\": \"Тюмень\",\n                    \"iata\": \"TJM\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Мехико\",\n            \"id\": 153,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Бенито Хуарес\",\n                \"iata\": \"MEX\",\n                \"city\": {\n                    \"name\": \"Мехико\",\n                    \"iata\": \"MEX\",\n                    \"country\": {\n                        \"name\": \"Мексика\",\n                        \"code\": \"MX\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Нижнекамск (Бегишево)\",\n            \"id\": 154,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Бегишево\",\n                \"iata\": \"NBC\",\n                \"city\": {\n                    \"name\": \"Нижнекамск\",\n                    \"iata\": \"NBC\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Жуковский\",\n            \"id\": 155,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Жуковский\",\n                \"iata\": \"ZIA\",\n                \"city\": {\n                    \"name\": \"Жуковский\",\n                    \"iata\": \"ZIA\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Терминал 1, Ahlan и Marhaba\",\n            \"id\": 156,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Дубай\",\n                \"iata\": \"DXB\",\n                \"city\": {\n                    \"name\": \"Дубай\",\n                    \"iata\": \"DXB\",\n                    \"country\": {\n                        \"name\": \"ОАЭ\",\n                        \"code\": \"AE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Терминал 2, Marhaba\",\n            \"id\": 157,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Дубай\",\n                \"iata\": \"DXB\",\n                \"city\": {\n                    \"name\": \"Дубай\",\n                    \"iata\": \"DXB\",\n                    \"country\": {\n                        \"name\": \"ОАЭ\",\n                        \"code\": \"AE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Терминал 3, Ahlan и Marhaba\",\n            \"id\": 158,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Дубай\",\n                \"iata\": \"DXB\",\n                \"city\": {\n                    \"name\": \"Дубай\",\n                    \"iata\": \"DXB\",\n                    \"country\": {\n                        \"name\": \"ОАЭ\",\n                        \"code\": \"AE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Al Majlis\",\n            \"id\": 159,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Дубай\",\n                \"iata\": \"DXB\",\n                \"city\": {\n                    \"name\": \"Дубай\",\n                    \"iata\": \"DXB\",\n                    \"country\": {\n                        \"name\": \"ОАЭ\",\n                        \"code\": \"AE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Оренбург\",\n            \"id\": 160,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Оренбург\",\n                \"iata\": \"REN\",\n                \"city\": {\n                    \"name\": \"Оренбург\",\n                    \"iata\": \"REN\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Инсбурк\",\n            \"id\": 161,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Инсбрук\",\n                \"iata\": \"INN\",\n                \"city\": {\n                    \"name\": \"Инсбрук\",\n                    \"iata\": \"INN\",\n                    \"country\": {\n                        \"name\": \"Австрия\",\n                        \"code\": \"AT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Тбилиси\",\n            \"id\": 162,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Тбилиси\",\n                \"iata\": \"TBS\",\n                \"city\": {\n                    \"name\": \"Тбилиси\",\n                    \"iata\": \"TBS\",\n                    \"country\": {\n                        \"name\": \"Грузия\",\n                        \"code\": \"GE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Лион\",\n            \"id\": 163,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Лион\",\n                \"iata\": \"LYS\",\n                \"city\": {\n                    \"name\": \"Лион\",\n                    \"iata\": \"LYS\",\n                    \"country\": {\n                        \"name\": \"Франция\",\n                        \"code\": \"FR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Набережные Челны\",\n            \"id\": 164,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Набережные Челны\",\n                \"iata\": \"NBC\",\n                \"city\": {\n                    \"name\": \"Набережные Челны\",\n                    \"iata\": \"NBC\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Геленджик\",\n            \"id\": 165,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Геленджик\",\n                \"iata\": \"GDZ\",\n                \"city\": {\n                    \"name\": \"Геленджик\",\n                    \"iata\": \"GDZ\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Петропавловск-Камчатский\",\n            \"id\": 166,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Елизово\",\n                \"iata\": \"PKC\",\n                \"city\": {\n                    \"name\": \"Петропавловск-Камчатский\",\n                    \"iata\": \"PKC\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Рио-де-Жанейро\",\n            \"id\": 167,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Рио-де-Жанейро\",\n                \"iata\": \"RIO\",\n                \"city\": {\n                    \"name\": \"Рио-де-Жанейро\",\n                    \"iata\": \"RIO\",\n                    \"country\": {\n                        \"name\": \"Бразилия\",\n                        \"code\": \"BR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Махачкала\",\n            \"id\": 168,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Уйташ\",\n                \"iata\": \"MCX\",\n                \"city\": {\n                    \"name\": \"Махачкала\",\n                    \"iata\": \"MCX\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Пальма-де-Майорка\",\n            \"id\": 170,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Пальма-де-Майорка\",\n                \"iata\": \"PMI\",\n                \"city\": {\n                    \"name\": \"Пальма-де-Мальорка\",\n                    \"iata\": \"PMI\",\n                    \"country\": {\n                        \"name\": \"Испания\",\n                        \"code\": \"ES\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Архангельск\",\n            \"id\": 171,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Талаги\",\n                \"iata\": \"ARH\",\n                \"city\": {\n                    \"name\": \"Архангельск\",\n                    \"iata\": \"ARH\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Ставрополь\",\n            \"id\": 172,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Ставрополь\",\n                \"iata\": \"STW\",\n                \"city\": {\n                    \"name\": \"Ставрополь\",\n                    \"iata\": \"STW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Пафос\",\n            \"id\": 173,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Пафос\",\n                \"iata\": \"PFO\",\n                \"city\": {\n                    \"name\": \"Пафос\",\n                    \"iata\": \"PFO\",\n                    \"country\": {\n                        \"name\": \"Кипр\",\n                        \"code\": \"CY\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Ольбия\",\n            \"id\": 174,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Коста Смеральда\",\n                \"iata\": \"OLB\",\n                \"city\": {\n                    \"name\": \"Ольбия\",\n                    \"iata\": \"OLB\",\n                    \"country\": {\n                        \"name\": \"Италия\",\n                        \"code\": \"IT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Пула\",\n            \"id\": 175,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Пула\",\n                \"iata\": \"PUY\",\n                \"city\": {\n                    \"name\": \"Пула\",\n                    \"iata\": \"PUY\",\n                    \"country\": {\n                        \"name\": \"Хорватия\",\n                        \"code\": \"HR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Римини\",\n            \"id\": 176,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Мирамаре\",\n                \"iata\": \"RMI\",\n                \"city\": {\n                    \"name\": \"Римини\",\n                    \"iata\": \"RMI\",\n                    \"country\": {\n                        \"name\": \"Италия\",\n                        \"code\": \"IT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Кос\",\n            \"id\": 178,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Гиппократес\",\n                \"iata\": \"KGS\",\n                \"city\": {\n                    \"name\": \"Кос\",\n                    \"iata\": \"KGS\",\n                    \"country\": {\n                        \"name\": \"Греция\",\n                        \"code\": \"GR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Миконос\",\n            \"id\": 179,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Миконос\",\n                \"iata\": \"JMK\",\n                \"city\": {\n                    \"name\": \"Миконос\",\n                    \"iata\": \"JMK\",\n                    \"country\": {\n                        \"name\": \"Греция\",\n                        \"code\": \"GR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Неаполь\",\n            \"id\": 180,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Каподичино\",\n                \"iata\": \"NAP\",\n                \"city\": {\n                    \"name\": \"Неаполь\",\n                    \"iata\": \"APF\",\n                    \"country\": {\n                        \"name\": \"США\",\n                        \"code\": \"US\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Магадан\",\n            \"id\": 181,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Сокол\",\n                \"iata\": \"GDX\",\n                \"city\": {\n                    \"name\": \"Магадан\",\n                    \"iata\": \"GDX\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Дурбан\",\n            \"id\": 182,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Дурбан\",\n                \"iata\": \"DUR\",\n                \"city\": {\n                    \"name\": \"Дурбан\",\n                    \"iata\": \"DUR\",\n                    \"country\": {\n                        \"name\": \"ЮАР\",\n                        \"code\": \"ZA\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Даламан\",\n            \"id\": 183,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Даламан\",\n                \"iata\": \"DLM\",\n                \"city\": {\n                    \"name\": \"Даламан\",\n                    \"iata\": \"DLM\",\n                    \"country\": {\n                        \"name\": \"Турция\",\n                        \"code\": \"TR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Токио\",\n            \"id\": 184,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Ханэда\",\n                \"iata\": \"HND\",\n                \"city\": {\n                    \"name\": \"Токио\",\n                    \"iata\": \"TYO\",\n                    \"country\": {\n                        \"name\": \"Япония\",\n                        \"code\": \"JP\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Болонья\",\n            \"id\": 185,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Гульельмо Маркони\",\n                \"iata\": \"BLQ\",\n                \"city\": {\n                    \"name\": \"Болонья\",\n                    \"iata\": \"BLQ\",\n                    \"country\": {\n                        \"name\": \"Италия\",\n                        \"code\": \"IT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Тенерифе\",\n            \"id\": 186,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Южный (Тенерифе)\",\n                \"iata\": \"TFS\",\n                \"city\": {\n                    \"name\": \"Тенерифе\",\n                    \"iata\": \"TCI\",\n                    \"country\": {\n                        \"name\": \"Испания\",\n                        \"code\": \"ES\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Ашхабад\",\n            \"id\": 187,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Ашхабад\",\n                \"iata\": \"ASB\",\n                \"city\": {\n                    \"name\": \"Ашхабад\",\n                    \"iata\": \"ASB\",\n                    \"country\": {\n                        \"name\": \"Туркменистан\",\n                        \"code\": \"TM\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Батуми\",\n            \"id\": 188,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Батуми\",\n                \"iata\": \"BUS\",\n                \"city\": {\n                    \"name\": \"Батуми\",\n                    \"iata\": \"BUS\",\n                    \"country\": {\n                        \"name\": \"Грузия\",\n                        \"code\": \"GE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Харьков\",\n            \"id\": 189,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Харьков\",\n                \"iata\": \"HRK\",\n                \"city\": {\n                    \"name\": \"Харьков\",\n                    \"iata\": \"HRK\",\n                    \"country\": {\n                        \"name\": \"Украина\",\n                        \"code\": \"UA\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Грозный\",\n            \"id\": 190,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Грозный\",\n                \"iata\": \"GRV\",\n                \"city\": {\n                    \"name\": \"Грозный\",\n                    \"iata\": \"GRV\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Милан Линате\",\n            \"id\": 191,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Линате\",\n                \"iata\": \"LIN\",\n                \"city\": {\n                    \"name\": \"Милан\",\n                    \"iata\": \"MIL\",\n                    \"country\": {\n                        \"name\": \"Италия\",\n                        \"code\": \"IT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Доха \",\n            \"id\": 192,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Доха\",\n                \"iata\": \"DOH\",\n                \"city\": {\n                    \"name\": \"Доха\",\n                    \"iata\": \"DOH\",\n                    \"country\": {\n                        \"name\": \"Катар\",\n                        \"code\": \"QA\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Париж Орли\",\n            \"id\": 193,\n            \"description\": \"<p><del></del></p>\",\n            \"airport\": {\n                \"name\": \"Орли\",\n                \"iata\": \"ORY\",\n                \"city\": {\n                    \"name\": \"Париж\",\n                    \"iata\": \"PAR\",\n                    \"country\": {\n                        \"name\": \"Франция\",\n                        \"code\": \"FR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Дели\",\n            \"id\": 194,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Дели\",\n                \"iata\": \"DEL\",\n                \"city\": {\n                    \"name\": \"Дели\",\n                    \"iata\": \"DEL\",\n                    \"country\": {\n                        \"name\": \"Индия\",\n                        \"code\": \"IN\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Пхукет\",\n            \"id\": 195,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Пхукет\",\n                \"iata\": \"HKT\",\n                \"city\": {\n                    \"name\": \"Пхукет\",\n                    \"iata\": \"HKT\",\n                    \"country\": {\n                        \"name\": \"Таиланд\",\n                        \"code\": \"TH\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Дубай Аль-Мактум\",\n            \"id\": 196,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Дубай Аль-Мактум\",\n                \"iata\": \"DWC\",\n                \"city\": {\n                    \"name\": \"Дубай\",\n                    \"iata\": \"DXB\",\n                    \"country\": {\n                        \"name\": \"ОАЭ\",\n                        \"code\": \"AE\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Сеул\",\n            \"id\": 197,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Инчхон\",\n                \"iata\": \"ICN\",\n                \"city\": {\n                    \"name\": \"Сеул\",\n                    \"iata\": \"SEL\",\n                    \"country\": {\n                        \"name\": \"Южная Корея\",\n                        \"code\": \"KR\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Сидней\",\n            \"id\": 199,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Сидней\",\n                \"iata\": \"SYD\",\n                \"city\": {\n                    \"name\": \"Сидней\",\n                    \"iata\": \"SDY\",\n                    \"country\": {\n                        \"name\": \"США\",\n                        \"code\": \"US\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Саранск\",\n            \"id\": 200,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Саранск\",\n                \"iata\": \"SKX\",\n                \"city\": {\n                    \"name\": \"Саранск\",\n                    \"iata\": \"SKX\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Верона\",\n            \"id\": 201,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Валерио Катулло\",\n                \"iata\": \"VRN\",\n                \"city\": {\n                    \"name\": \"Верона\",\n                    \"iata\": \"VRN\",\n                    \"country\": {\n                        \"name\": \"Италия\",\n                        \"code\": \"IT\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Бахрейн\",\n            \"id\": 202,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Бахрейн\",\n                \"iata\": \"BAH\",\n                \"city\": {\n                    \"name\": \"Манама\",\n                    \"iata\": \"BAH\",\n                    \"country\": {\n                        \"name\": \"Бахрейн\",\n                        \"code\": \"BH\"\n                    }\n                }\n            }\n        },\n        {\n            \"name\": \"Шереметьево-B (Федеральный)\",\n            \"id\": 203,\n            \"description\": \"\",\n            \"airport\": {\n                \"name\": \"Шереметьево\",\n                \"iata\": \"SVO\",\n                \"city\": {\n                    \"name\": \"Москва\",\n                    \"iata\": \"MOW\",\n                    \"country\": {\n                        \"name\": \"Россия\",\n                        \"code\": \"RU\"\n                    }\n                }\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "/query/terminals все",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6c845d2a-f66e-46e9-8270-6f7ac3e71e0a",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Controls Accept header\"] = (postman.getResponseHeader('Content-Type'))===\"application/json; charset=UTF-8\";",
+									"tests[\"body contains result\"] = responseBody.has(\"result\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/terminals?useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"terminals"
+							],
+							"query": [
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Запрос доступных терминалов"
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?iata Moscow All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "752ad00f-a607-4c88-9bbd-987175b7e8b8",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Controls Accept header\"] = (postman.getResponseHeader('Content-Type'))===\"application/json; charset=UTF-8\";",
+									"tests[\"body contains result\"] = responseBody.has(\"result\");",
+									"",
+									"//var jsonData = JSON.parse(responseBody);",
+									"//tests[\"Code is 0\"] = jsonData.code === 0;",
+									"//tests[\"Message is OK\"] = jsonData.message === \"OK\";",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?iata=MOW&useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "iata",
+									"value": "MOW"
+								},
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?iata Moscow",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c4908428-9cf3-4486-9b88-175686c57ea4",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Controls Accept header\"] = (postman.getResponseHeader('Content-Type'))===\"application/json; charset=UTF-8\";",
+									"tests[\"body contains result\"] = responseBody.has(\"result\");",
+									"",
+									"//var jsonData = JSON.parse(responseBody);",
+									"//tests[\"Code is 0\"] = jsonData.code === 0;",
+									"//tests[\"Message is OK\"] = jsonData.message === \"OK\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?iata={{iata}}",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "iata",
+									"value": "{{iata}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?terminalId All services по выбранному",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f96d5438-c75e-4cc9-9430-756b847d5e28",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Controls Accept header\"] = (postman.getResponseHeader('Content-Type'))===\"application/json; charset=UTF-8\";",
+									"tests[\"body contains result\"] = responseBody.has(\"result\");",
+									"",
+									"//var jsonData = JSON.parse(responseBody);",
+									"//tests[\"Code is 0\"] = jsonData.code === 0;",
+									"//tests[\"Message is OK\"] = jsonData.message === \"OK\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?terminalId={{terminal_id}}&useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "terminalId",
+									"value": "{{terminal_id}}"
+								},
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cfee330b-6478-45d0-99e3-2f8bbe1bb914",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 422\"] = responseCode.code === 422;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Body matches string\"] = responseBody.has(\"terminalId\");",
+									"tests[\"Body matches string2\"] = responseBody.has(\"iata\");",
+									"tests[\"Body matches string3\"] = responseBody.has(\"required\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?terminalId Departure all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "38e43eb5-14b8-4114-82f9-3dfb2bab49f6",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Controls Accept header\"] = (postman.getResponseHeader('Content-Type'))===\"application/json; charset=UTF-8\";",
+									"tests[\"body contains result\"] = responseBody.has(\"result\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?terminalId={{terminal_id}}&type=departure&useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "terminalId",
+									"value": "{{terminal_id}}"
+								},
+								{
+									"key": "type",
+									"value": "departure"
+								},
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "vip-zal\nhttp://jira.poezd.ru/browse/VIP-832"
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?terminalId Arrival all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ad666bb2-cc9a-4ea8-892b-1f0750f346c8",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Controls Accept header\"] = (postman.getResponseHeader('Content-Type'))===\"application/json; charset=UTF-8\";",
+									"tests[\"body contains result\"] = responseBody.has(\"result\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?terminalId={{terminal_id}}&type=arrival&useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "terminalId",
+									"value": "{{terminal_id}}"
+								},
+								{
+									"key": "type",
+									"value": "arrival"
+								},
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "vip-zal\nhttp://jira.poezd.ru/browse/VIP-832"
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?iata  Departure all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "729eb12c-67b8-41ee-9fcd-e7ca047b7bf7",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"//tests[\"Code is 0\"] = jsonData.code === 0;",
+									"//tests[\"Message is OK\"] = jsonData.message === \"OK\";",
+									"tests[\"Result with RUB\"] = responseBody.has(\"RUB\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?iata={{iata}}&type=departure&useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "iata",
+									"value": "{{iata}}"
+								},
+								{
+									"key": "type",
+									"value": "departure"
+								},
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "vip-zal\nhttp://jira.poezd.ru/browse/VIP-832"
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?iata Arrival all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cf74b711-529b-48dc-8d78-388494dc1c05",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"//tests[\"Code is 0\"] = jsonData.code === 0;",
+									"//tests[\"Message is OK\"] = jsonData.message === \"OK\";",
+									"tests[\"Result with RUB\"] = responseBody.has(\"RUB\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?iata={{iata}}&type=arrival&useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "iata",
+									"value": "{{iata}}"
+								},
+								{
+									"key": "type",
+									"value": "arrival"
+								},
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "vip-zal\nhttp://jira.poezd.ru/browse/VIP-832"
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?iata=MOW&type=arrival",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bef2f62d-cb9d-408b-98bd-034b073c9b96",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Result with RUB\"] = responseBody.has(\"RUB\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?iata=MOW&type=arrival&useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "iata",
+									"value": "MOW"
+								},
+								{
+									"key": "type",
+									"value": "arrival"
+								},
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "vip-zal\nhttp://jira.poezd.ru/browse/VIP-832"
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?iata=SVO All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bab5702f-5a2d-40cf-afc5-77f266a98558",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Result with RUB\"] = responseBody.has(\"RUB\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?iata=SVO&useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "iata",
+									"value": "SVO"
+								},
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "vip-zal\nhttp://jira.poezd.ru/browse/VIP-832"
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?iata={{iata}}&date={{date_now}}&type=departure",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2348288e-2d2c-4eb2-b92e-a70ef361898d",
+								"type": "text/javascript",
+								"exec": [
+									"var date = new Date();",
+									"//date.setDate(date.getDate() + 1); ",
+									"var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2));",
+									"postman.setEnvironmentVariable(\"date_now\", jsonData);"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "0eaf6d9b-f77f-4755-bb6f-bd4a6f7831b7",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Result with RUB\"] = responseBody.has(\"RUB\");",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?iata={{iata}}&date={{date_now}}&type=departure&useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "iata",
+									"value": "{{iata}}"
+								},
+								{
+									"key": "date",
+									"value": "{{date_now}}"
+								},
+								{
+									"key": "type",
+									"value": "departure"
+								},
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?iata={{iata}}&date={{date_now}}&type=arrival",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2348288e-2d2c-4eb2-b92e-a70ef361898d",
+								"type": "text/javascript",
+								"exec": [
+									"var date = new Date();",
+									"//date.setDate(date.getDate() + 1); ",
+									"var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2));",
+									"postman.setEnvironmentVariable(\"date_now\", jsonData);"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "cc27f243-473e-4c76-b08f-fcdd30554d19",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Result with RUB\"] = responseBody.has(\"RUB\");",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?iata={{iata}}&date={{date_now}}&type=arrival&useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "iata",
+									"value": "{{iata}}"
+								},
+								{
+									"key": "date",
+									"value": "{{date_now}}"
+								},
+								{
+									"key": "type",
+									"value": "arrival"
+								},
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?iata=MOW&terminalId={{terminal_id}}&date={{date_now}}&type=arrival",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f4693c59-58e1-47a8-bd35-1cbe9cbee981",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Result with RUB\"] = responseBody.has(\"RUB\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?iata=MOW&terminalId={{terminal_id}}&date={{date_now}}&type=arrival&useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "iata",
+									"value": "MOW"
+								},
+								{
+									"key": "terminalId",
+									"value": "{{terminal_id}}"
+								},
+								{
+									"key": "date",
+									"value": "{{date_now}}"
+								},
+								{
+									"key": "type",
+									"value": "arrival"
+								},
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Запрос доступных услуг с фильтрацией"
+					},
+					"response": []
+				},
+				{
+					"name": "/query/services?iata=MOW&terminalId=120&date=2018-05-17&type=arrival Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e7a9a143-2e06-4345-81c0-320559803776",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 422\"] = responseCode.code === 422;",
+									"tests[\"Controls Accept header\"] = (postman.getResponseHeader('Content-Type'))===\"application/json; charset=UTF-8\";",
+									"tests[\"body contains error\"] = responseBody.has(\"Значение «Date» должно быть не меньше\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/query/services?iata=MOW&terminalId=775&date={{old_date}}&type=arrival&useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"query",
+								"services"
+							],
+							"query": [
+								{
+									"key": "iata",
+									"value": "MOW"
+								},
+								{
+									"key": "terminalId",
+									"value": "775"
+								},
+								{
+									"key": "date",
+									"value": "{{old_date}}"
+								},
+								{
+									"key": "type",
+									"value": "arrival"
+								},
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Запрос доступных услуг с фильтрацией"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"description": "",
+			"item": [
+				{
+					"name": "/security/auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "96aac0bd-55ef-43e4-9862-5ee8821a80b9",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"//tests[\"Code is 0\"] = jsonData.code === 0;",
+									"//tests[\"Message is OK\"] = jsonData.message === \"OK\";",
+									"//tests[\"Body matches string\"] = responseBody.has(\"sUpJD2uuMNO0s_kAXAtIcR-ySJnuVeOt\");",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.result);",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "646c87d9-393d-4af7-8821-e6f1e3d55f82",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n  \"login\": \"{{user}}\",\r\n  \"password\": \"{{pass}}\"\r\n}"
+						},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/security/auth",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"security",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/orders?useAllServices=1",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bf458fda-141e-4689-ba98-58354a2a9990",
+								"type": "text/javascript",
+								"exec": [
+									"//var date = new Date();",
+									"//date.setDate(date.getDate() + 1); ",
+									"//var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2) +\"T23:59:00\");",
+									"//postman.setEnvironmentVariable(\"fly_date\", jsonData);",
+									"//var curr_date = d.getDate();",
+									"//var curr_month = d.getMonth() + 1;",
+									"//var curr_year = d.getFullYear();",
+									"//var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2) +\"T23:59:00\");",
+									"",
+									"//var jsonData = (curr_year + \"-\" + curr_month + \"-\" + curr_date +\"T23:59:00\");",
+									"",
+									"//var jsonData = new Date().toUTCString();",
+									"",
+									"//postman.setEnvironmentVariable(\"flyDate\", jsonData);",
+									"//postman.setEnvironmentVariable(\"flyDate\", \"2018-03-30T23:59:00\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "1881e9b6-664c-44e4-8d1b-ce8100426b02",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Code is 0\"] = jsonData.code === 0;",
+									"tests[\"Message is OK\"] = jsonData.message === \"OK\";",
+									"tests[\"Body matches string\"] = responseBody.has(\"price-resolved\");",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"var strfromJSON = jsonData.result.id;",
+									"postman.setEnvironmentVariable(\"id\", strfromJSON);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"flightDate\": \"{{fly_date}}\",\r\n  \"flightNumber\": \"UA-141\",\r\n  \"flightOrigin\": \"Москва\",\r\n  \"flightDestination\": \"Минск\",\r\n  \"serviceId\": \"{{service_id}}\",\r\n  \"ticketClass\": \"\",\r\n  \"passengers\": [\r\n    {\r\n      \"firstName\": \"Иван\",\r\n      \"lastName\": \"Иванов\",\r\n      \"middleName\": \"Петрович\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"citizenship\": \"ru\",\r\n      \"passportData\": \"12345690\"\r\n    }\r\n   \r\n  ],\r\n  \"cars\": [\r\n    {\r\n      \"model\": \"ПАЗ\",\r\n      \"number\": \"КА1234БУ\"\r\n    }\r\n    \r\n  ],\r\n  \"attendants\": [\r\n    {\r\n      \"firstName\": \"Сергей\",\r\n      \"lastName\": \"Встрречающий\",\r\n      \"middleName\": \"\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"phone\": \"(541) 754-3010\"\r\n    },\r\n    {\r\n      \"firstName\": \"Сергей\",\r\n      \"lastName\": \"Встрречающий\",\r\n      \"middleName\": \"\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"phone\": \"(541) 754-3010\"\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders?useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Create an order."
+					},
+					"response": []
+				},
+				{
+					"name": "/orders?useAllServices=1 Услуга неактивна на дату",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bf458fda-141e-4689-ba98-58354a2a9990",
+								"type": "text/javascript",
+								"exec": [
+									"//var date = new Date();",
+									"//date.setDate(date.getDate() + 1); ",
+									"//var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2) +\"T23:59:00\");",
+									"//postman.setEnvironmentVariable(\"fly_date\", jsonData);",
+									"//var curr_date = d.getDate();",
+									"//var curr_month = d.getMonth() + 1;",
+									"//var curr_year = d.getFullYear();",
+									"//var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2) +\"T23:59:00\");",
+									"",
+									"//var jsonData = (curr_year + \"-\" + curr_month + \"-\" + curr_date +\"T23:59:00\");",
+									"",
+									"//var jsonData = new Date().toUTCString();",
+									"",
+									"//postman.setEnvironmentVariable(\"flyDate\", jsonData);",
+									"//postman.setEnvironmentVariable(\"flyDate\", \"2018-03-30T23:59:00\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5365bc7-bb64-4d5b-87bc-f2540253addc",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Code is 2\"] = jsonData.code === 2;",
+									"tests[\"Message\"] = jsonData.message === \"Выбранная услуга неактивна на выбранную дату\";",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"flightDate\": \"{{fly_date}}\",\r\n  \"flightNumber\": \"UA-141\",\r\n  \"flightOrigin\": \"Москва\",\r\n  \"flightDestination\": \"Минск\",\r\n  \"serviceId\": \"{{service_id_off}}\",\r\n  \"ticketClass\": \"\",\r\n  \"passengers\": [\r\n    {\r\n      \"firstName\": \"Иван\",\r\n      \"lastName\": \"Иванов\",\r\n      \"middleName\": \"Петрович\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"citizenship\": \"ru\",\r\n      \"passportData\": \"12345690\"\r\n    }\r\n   \r\n  ],\r\n  \"cars\": [\r\n    {\r\n      \"model\": \"ПАЗ\",\r\n      \"number\": \"КА1234БУ\"\r\n    }\r\n    \r\n  ],\r\n  \"attendants\": [\r\n    {\r\n      \"firstName\": \"Сергей\",\r\n      \"lastName\": \"Встрречающий\",\r\n      \"middleName\": \"\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"phone\": \"(541) 754-3010\"\r\n    },\r\n    {\r\n      \"firstName\": \"Сергей\",\r\n      \"lastName\": \"Встрречающий\",\r\n      \"middleName\": \"\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"phone\": \"(541) 754-3010\"\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders?useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Create an order."
+					},
+					"response": []
+				},
+				{
+					"name": "/orders/{{id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d612eeb8-8c43-492c-9c10-e8b9f3256b10",
+								"type": "text/javascript",
+								"exec": [
+									"// тестируем статус ответа и формат",
+									"pm.test(\"Status is ok, response is json, code is 200\", function () {",
+									"    pm.response.to.be.success;",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"    pm.expect(pm.response).to.have.property('code', 200);",
+									"    pm.response.to.have.body();",
+									"    ",
+									"});",
+									"",
+									"// проверим, что id предзаказа из окружения равен id из ответа",
+									"pm.test(\"id from env is equal to id from response\", function () {",
+									"    pm.expect((pm.environment.get(\"id\"))).to.equal(pm.response.json().id);",
+									"    ",
+									"});",
+									"",
+									"//tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Body matches string\"] = responseBody.has(\"price-resolved\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders/{{id}}",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/orders недостаточно времени для оформления",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "315f6b0a-8c16-4c01-ac49-de005a994128",
+								"type": "text/javascript",
+								"exec": [
+									"var date = new Date();",
+									"var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) +\"T00:00:01\");",
+									"postman.setEnvironmentVariable(\"old_date\", jsonData);",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "0b005294-14ea-446b-821a-869e08c114df",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Code is 3\"] = jsonData.code === 3;",
+									"tests[\"Message\"] = jsonData.message === \"Недостаточно времени для оформления услуги\";",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"flightDate\": \"{{old_date}}\",\r\n  \"flightNumber\": \"UA-141\",\r\n  \"flightOrigin\": \"Москва\",\r\n  \"flightDestination\": \"Минск\",\r\n  \"serviceId\": \"{{service_id}}\",\r\n  \"ticketClass\": \"\",\r\n  \"passengers\": [\r\n    {\r\n      \"firstName\": \"Иван\",\r\n      \"lastName\": \"Иванов\",\r\n      \"middleName\": \"Петрович\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"citizenship\": \"ru\",\r\n      \"passportData\": \"12345690\"\r\n    }\r\n   \r\n  ],\r\n  \"cars\": [\r\n    {\r\n      \"model\": \"ПАЗ\",\r\n      \"number\": \"КА1234БУ\"\r\n    }\r\n    \r\n  ],\r\n  \"attendants\": [\r\n    {\r\n      \"firstName\": \"Сергей\",\r\n      \"lastName\": \"Встрречающий\",\r\n      \"middleName\": \"\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"phone\": \"(541) 754-3010\"\r\n    },\r\n    {\r\n      \"firstName\": \"Сергей\",\r\n      \"lastName\": \"Встрречающий\",\r\n      \"middleName\": \"\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"phone\": \"(541) 754-3010\"\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders?useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Недостаточно времени для оформления услуги."
+					},
+					"response": []
+				},
+				{
+					"name": "/orders услуга не доступна для партнера",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "315f6b0a-8c16-4c01-ac49-de005a994128",
+								"type": "text/javascript",
+								"exec": [
+									"var date = new Date();",
+									"var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) +\"T00:00:01\");",
+									"postman.setEnvironmentVariable(\"old_date\", jsonData);",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca2e3342-f892-4924-8be9-2931f7336266",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Code is 1\"] = jsonData.code === 1;",
+									"tests[\"Message\"] = jsonData.message === \"Выбранная услуга недоступна\";",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"flightDate\": \"{{old_date}}\",\r\n  \"flightNumber\": \"UA-141\",\r\n  \"flightOrigin\": \"Москва\",\r\n  \"flightDestination\": \"Минск\",\r\n  \"serviceId\": \"{{service_id}}\",\r\n  \"ticketClass\": \"\",\r\n  \"passengers\": [\r\n    {\r\n      \"firstName\": \"Иван\",\r\n      \"lastName\": \"Иванов\",\r\n      \"middleName\": \"Петрович\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"citizenship\": \"ru\",\r\n      \"passportData\": \"12345690\"\r\n    }\r\n   \r\n  ],\r\n  \"cars\": [\r\n    {\r\n      \"model\": \"ПАЗ\",\r\n      \"number\": \"КА1234БУ\"\r\n    }\r\n    \r\n  ],\r\n  \"attendants\": [\r\n    {\r\n      \"firstName\": \"Сергей\",\r\n      \"lastName\": \"Встрречающий\",\r\n      \"middleName\": \"\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"phone\": \"(541) 754-3010\"\r\n    },\r\n    {\r\n      \"firstName\": \"Сергей\",\r\n      \"lastName\": \"Встрречающий\",\r\n      \"middleName\": \"\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"phone\": \"(541) 754-3010\"\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders"
+							]
+						},
+						"description": "Недостаточно времени для оформления услуги."
+					},
+					"response": []
+				},
+				{
+					"name": "/orders создать предзаказ",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0894b7fb-498c-43b4-ba5e-e61404e58d42",
+								"type": "text/javascript",
+								"exec": [
+									"var date = new Date();",
+									"date.setDate(date.getDate() + 1); ",
+									"var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2) +\"T23:59:00\");",
+									"postman.setEnvironmentVariable(\"fly_date\", jsonData);",
+									"//var curr_date = d.getDate();",
+									"//var curr_month = d.getMonth() + 1;",
+									"//var curr_year = d.getFullYear();",
+									"//var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2) +\"T23:59:00\");",
+									"",
+									"//var jsonData = (curr_year + \"-\" + curr_month + \"-\" + curr_date +\"T23:59:00\");",
+									"",
+									"//var jsonData = new Date().toUTCString();",
+									"",
+									"//postman.setEnvironmentVariable(\"flyDate\", jsonData);",
+									"//postman.setEnvironmentVariable(\"flyDate\", \"2018-03-30T23:59:00\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "8e4d4715-ad1a-4681-aa81-0c76d817a203",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Code is 0\"] = jsonData.code === 0;",
+									"tests[\"Message is OK\"] = jsonData.message === \"OK\";",
+									"tests[\"Body matches string\"] = responseBody.has(\"price-resolved\");",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"var strfromJSON = jsonData.result.id;",
+									"postman.setEnvironmentVariable(\"id\", strfromJSON);",
+									"",
+									"// получаем профиль из ответа",
+									"var profile = pm.response.json();",
+									"",
+									"// описываем схему модели",
+									"var scheme = {",
+									"  \"$id\": \"http://example.com/example.json\",",
+									"  \"type\": \"object\",",
+									"  \"definitions\": {},",
+									"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+									"  \"properties\": {",
+									"    \"code\": {",
+									"      \"$id\": \"/properties/code\",",
+									"      \"type\": \"integer\",",
+									"      \"title\": \"The Code Schema \",",
+									"      \"default\": 0,",
+									"      \"examples\": [",
+									"        0",
+									"      ]",
+									"    },",
+									"    \"message\": {",
+									"      \"$id\": \"/properties/message\",",
+									"      \"type\": \"string\",",
+									"      \"title\": \"The Message Schema \",",
+									"      \"default\": \"\",",
+									"      \"examples\": [",
+									"        \"OK\"",
+									"      ]",
+									"    },",
+									"    \"result\": {",
+									"      \"$id\": \"/properties/result\",",
+									"      \"type\": \"object\",",
+									"      \"properties\": {",
+									"        \"id\": {",
+									"          \"$id\": \"/properties/result/properties/id\",",
+									"          \"type\": \"string\",",
+									"          \"title\": \"The Id Schema \",",
+									"          \"default\": \"\",",
+									"          \"examples\": [",
+									"            \"1c2948c4-ee61-466c-ac1e-5d0185bbb6b2\"",
+									"          ]",
+									"        },",
+									"        \"_links\": {",
+									"          \"$id\": \"/properties/result/properties/_links\",",
+									"          \"type\": \"object\",",
+									"          \"properties\": {",
+									"            \"view\": {",
+									"              \"$id\": \"/properties/result/properties/_links/properties/view\",",
+									"              \"type\": \"object\",",
+									"              \"properties\": {",
+									"                \"href\": {",
+									"                  \"$id\": \"/properties/result/properties/_links/properties/view/properties/href\",",
+									"                  \"type\": \"string\",",
+									"                  \"title\": \"The Href Schema \",",
+									"                  \"default\": \"\",",
+									"                  \"examples\": [",
+									"                    \"http://dev.vipzal.dev.vip-zal.ru/partner/api/v1/orders/1c2948c4-ee61-466c-ac1e-5d0185bbb6b2\"",
+									"                  ]",
+									"                }",
+									"              }",
+									"            },",
+									"            \"cancellation\": {",
+									"              \"$id\": \"/properties/result/properties/_links/properties/cancellation\",",
+									"              \"type\": \"object\",",
+									"              \"properties\": {",
+									"                \"href\": {",
+									"                  \"$id\": \"/properties/result/properties/_links/properties/cancellation/properties/href\",",
+									"                  \"type\": \"string\",",
+									"                  \"title\": \"The Href Schema \",",
+									"                  \"default\": \"\",",
+									"                  \"examples\": [",
+									"                    \"http://dev.vipzal.dev.vip-zal.ru/partner/api/v1/orders/1c2948c4-ee61-466c-ac1e-5d0185bbb6b2/cancel\"",
+									"                  ]",
+									"                }",
+									"              }",
+									"            },",
+									"            \"confirmation\": {",
+									"              \"$id\": \"/properties/result/properties/_links/properties/confirmation\",",
+									"              \"type\": \"object\",",
+									"              \"properties\": {",
+									"                \"href\": {",
+									"                  \"$id\": \"/properties/result/properties/_links/properties/confirmation/properties/href\",",
+									"                  \"type\": \"string\",",
+									"                  \"title\": \"The Href Schema \",",
+									"                  \"default\": \"\",",
+									"                  \"examples\": [",
+									"                    \"http://dev.vipzal.dev.vip-zal.ru/partner/api/v1/orders/1c2948c4-ee61-466c-ac1e-5d0185bbb6b2/confirm\"",
+									"                  ]",
+									"                }",
+									"              }",
+									"            }",
+									"          }",
+									"        },",
+									"        \"status\": {",
+									"          \"$id\": \"/properties/result/properties/status\",",
+									"          \"type\": \"string\",",
+									"          \"title\": \"The Status Schema \",",
+									"          \"default\": \"\",",
+									"          \"examples\": [",
+									"            \"price-resolved\"",
+									"          ]",
+									"        },",
+									"        \"service\": {",
+									"          \"$id\": \"/properties/result/properties/service\",",
+									"          \"type\": \"object\",",
+									"          \"properties\": {",
+									"            \"id\": {",
+									"              \"$id\": \"/properties/result/properties/service/properties/id\",",
+									"              \"type\": \"string\",",
+									"              \"title\": \"The Id Schema \",",
+									"              \"default\": \"\",",
+									"              \"examples\": [",
+									"                \"422\"",
+									"              ]",
+									"            },",
+									"            \"name\": {",
+									"              \"$id\": \"/properties/result/properties/service/properties/name\",",
+									"              \"type\": \"string\",",
+									"              \"title\": \"The Name Schema \",",
+									"              \"default\": \"\",",
+									"              \"examples\": [",
+									"                \"Вип зал\"",
+									"              ]",
+									"            },",
+									"            \"type\": {",
+									"              \"$id\": \"/properties/result/properties/service/properties/type\",",
+									"              \"type\": \"string\",",
+									"              \"title\": \"The Type Schema \",",
+									"              \"default\": \"\",",
+									"              \"examples\": [",
+									"                \"departure\"",
+									"              ]",
+									"            }",
+									"          }",
+									"        },",
+									"        \"flight\": {",
+									"          \"$id\": \"/properties/result/properties/flight\",",
+									"          \"type\": \"object\",",
+									"          \"properties\": {",
+									"            \"time\": {",
+									"              \"$id\": \"/properties/result/properties/flight/properties/time\",",
+									"              \"type\": \"string\",",
+									"              \"title\": \"The Time Schema \",",
+									"              \"default\": \"\",",
+									"              \"examples\": [",
+									"                \"2018-04-11T23:59:00+03:00\"",
+									"              ]",
+									"            },",
+									"            \"origin\": {",
+									"              \"$id\": \"/properties/result/properties/flight/properties/origin\",",
+									"              \"type\": \"string\",",
+									"              \"title\": \"The Origin Schema \",",
+									"              \"default\": \"\",",
+									"              \"examples\": [",
+									"                \"Москва\"",
+									"              ]",
+									"            },",
+									"            \"destination\": {",
+									"              \"$id\": \"/properties/result/properties/flight/properties/destination\",",
+									"              \"type\": \"string\",",
+									"              \"title\": \"The Destination Schema \",",
+									"              \"default\": \"\",",
+									"              \"examples\": [",
+									"                \"Минск\"",
+									"              ]",
+									"            },",
+									"            \"number\": {",
+									"              \"$id\": \"/properties/result/properties/flight/properties/number\",",
+									"              \"type\": \"string\",",
+									"              \"title\": \"The Number Schema \",",
+									"              \"default\": \"\",",
+									"              \"examples\": [",
+									"                \"UA-141\"",
+									"              ]",
+									"            }",
+									"          }",
+									"        },",
+									"        \"ticketClass\": {",
+									"          \"$id\": \"/properties/result/properties/ticketClass\",",
+									"          \"type\": \"null\",",
+									"          \"title\": \"The Ticketclass Schema \",",
+									"          \"default\": null,",
+									"          \"examples\": [",
+									"            null",
+									"          ]",
+									"        },",
+									"        \"createdAt\": {",
+									"          \"$id\": \"/properties/result/properties/createdAt\",",
+									"          \"type\": \"string\",",
+									"          \"title\": \"The Createdat Schema \",",
+									"          \"default\": \"\",",
+									"          \"examples\": [",
+									"            \"2018-04-10T09:55:11+00:00\"",
+									"          ]",
+									"        },",
+									"        \"expiringAt\": {",
+									"          \"$id\": \"/properties/result/properties/expiringAt\",",
+									"          \"type\": \"string\",",
+									"          \"title\": \"The Expiringat Schema \",",
+									"          \"default\": \"\",",
+									"          \"examples\": [",
+									"            \"2018-04-11T17:59:00+00:00\"",
+									"          ]",
+									"        },",
+									"        \"price\": {",
+									"          \"$id\": \"/properties/result/properties/price\",",
+									"          \"type\": \"string\",",
+									"          \"title\": \"The Price Schema \",",
+									"          \"default\": \"\",",
+									"          \"examples\": [",
+									"            \"17136 RUB\"",
+									"          ]",
+									"        },",
+									"        \"passengers\": {",
+									"          \"$id\": \"/properties/result/properties/passengers\",",
+									"          \"type\": \"array\",",
+									"          \"items\": {",
+									"            \"$id\": \"/properties/result/properties/passengers/items\",",
+									"            \"type\": \"object\",",
+									"            \"properties\": {",
+									"              \"firstName\": {",
+									"                \"$id\": \"/properties/result/properties/passengers/items/properties/firstName\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Firstname Schema \",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"Иван\"",
+									"                ]",
+									"              },",
+									"              \"lastName\": {",
+									"                \"$id\": \"/properties/result/properties/passengers/items/properties/lastName\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Lastname Schema \",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"Иванов\"",
+									"                ]",
+									"              },",
+									"              \"middleName\": {",
+									"                \"$id\": \"/properties/result/properties/passengers/items/properties/middleName\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Middlename Schema \",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"Петрович\"",
+									"                ]",
+									"              },",
+									"              \"birthDate\": {",
+									"                \"$id\": \"/properties/result/properties/passengers/items/properties/birthDate\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Birthdate Schema \",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"1942-06-17\"",
+									"                ]",
+									"              },",
+									"              \"citizenship\": {",
+									"                \"$id\": \"/properties/result/properties/passengers/items/properties/citizenship\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Citizenship Schema \",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"RU\"",
+									"                ]",
+									"              },",
+									"              \"passportData\": {",
+									"                \"$id\": \"/properties/result/properties/passengers/items/properties/passportData\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Passportdata Schema \",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"12345690\"",
+									"                ]",
+									"              }",
+									"            }",
+									"          }",
+									"        },",
+									"        \"attendants\": {",
+									"          \"$id\": \"/properties/result/properties/attendants\",",
+									"          \"type\": \"array\",",
+									"          \"items\": {",
+									"            \"$id\": \"/properties/result/properties/attendants/items\",",
+									"            \"type\": \"object\",",
+									"            \"properties\": {",
+									"              \"firstName\": {",
+									"                \"$id\": \"/properties/result/properties/attendants/items/properties/firstName\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Firstname Schema \",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"Сергей\"",
+									"                ]",
+									"              },",
+									"              \"lastName\": {",
+									"                \"$id\": \"/properties/result/properties/attendants/items/properties/lastName\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Lastname Schema \",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"Встрречающий\"",
+									"                ]",
+									"              },",
+									"              \"middleName\": {",
+									"                \"$id\": \"/properties/result/properties/attendants/items/properties/middleName\",",
+									"                \"type\": \"null\",",
+									"                \"title\": \"The Middlename Schema \",",
+									"                \"default\": null,",
+									"                \"examples\": [",
+									"                  null",
+									"                ]",
+									"              },",
+									"              \"birthDate\": {",
+									"                \"$id\": \"/properties/result/properties/attendants/items/properties/birthDate\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Birthdate Schema \",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"1942-06-17\"",
+									"                ]",
+									"              },",
+									"              \"phone\": {",
+									"                \"$id\": \"/properties/result/properties/attendants/items/properties/phone\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Phone Schema \",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"(541) 754-3010\"",
+									"                ]",
+									"              }",
+									"            }",
+									"          }",
+									"        },",
+									"        \"cars\": {",
+									"          \"$id\": \"/properties/result/properties/cars\",",
+									"          \"type\": \"array\",",
+									"          \"items\": {",
+									"            \"$id\": \"/properties/result/properties/cars/items\",",
+									"            \"type\": \"object\",",
+									"            \"properties\": {",
+									"              \"model\": {",
+									"                \"$id\": \"/properties/result/properties/cars/items/properties/model\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Model Schema \",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"ПАЗ\"",
+									"                ]",
+									"              },",
+									"              \"number\": {",
+									"                \"$id\": \"/properties/result/properties/cars/items/properties/number\",",
+									"                \"type\": \"string\",",
+									"                \"title\": \"The Number Schema \",",
+									"                \"default\": \"\",",
+									"                \"examples\": [",
+									"                  \"КА1234БУ\"",
+									"                ]",
+									"              }",
+									"            }",
+									"          }",
+									"        }",
+									"      }",
+									"    }",
+									"  }",
+									"};",
+									"",
+									"pm.test('Schema is valid', function() {",
+									"    // валидируем объект profile с помощью правил из scheme",
+									"    var isValidScheme = tv4.validate(profile, scheme, true, true);",
+									"",
+									"    // ожидаем, что результат валидации true",
+									"    pm.expect(isValidScheme).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"flightDate\": \"{{fly_date}}\",\r\n  \"flightNumber\": \"UA-141\",\r\n  \"flightOrigin\": \"Москва\",\r\n  \"flightDestination\": \"Минск\",\r\n  \"serviceId\": \"{{service_id}}\",\r\n  \"ticketClass\": \"\",\r\n  \"passengers\": [\r\n    {\r\n      \"firstName\": \"Иван\",\r\n      \"lastName\": \"Иванов\",\r\n      \"middleName\": \"Петрович\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"citizenship\": \"ru\",\r\n      \"passportData\": \"12345690\"\r\n    }\r\n   \r\n  ],\r\n  \"cars\": [\r\n    {\r\n      \"model\": \"ПАЗ\",\r\n      \"number\": \"КА1234БУ\"\r\n    }\r\n    \r\n  ],\r\n  \"attendants\": [\r\n    {\r\n      \"firstName\": \"Сергей\",\r\n      \"lastName\": \"Встрречающий\",\r\n      \"middleName\": \"\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"phone\": \"(541) 754-3010\"\r\n    },\r\n    {\r\n      \"firstName\": \"Сергей\",\r\n      \"lastName\": \"Встрречающий\",\r\n      \"middleName\": \"\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"phone\": \"(541) 754-3010\"\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders?useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Create an order."
+					},
+					"response": []
+				},
+				{
+					"name": "/orders/{{id}}/confirm",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cfaa0d6c-87ed-4305-8c2d-181b3dc8cb4e",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Code is 0\"] = jsonData.code === 0;",
+									"tests[\"Message is OK\"] = jsonData.message === \"OK\";",
+									"tests[\"Body matches string\"] = responseBody.has(\"confirmed\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders/{{id}}/confirm",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders",
+								"{{id}}",
+								"confirm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/orders/{{id}}/confirm повторно",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ed5f247b-70af-4e0d-9090-c3a46ab13a3a",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Code is 1\"] = jsonData.code === 1;",
+									"tests[\"Message is Недопустимый статус предзаказа\"] = jsonData.message === \"Недопустимый статус предзаказа\";",
+									"tests[\"Body matches string\"] = responseBody.has(\"confirmed\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders/{{id}}/confirm",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders",
+								"{{id}}",
+								"confirm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/orders создать предзаказ",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d524dcdf-bc6d-4a4c-a17e-82a514534dc7",
+								"type": "text/javascript",
+								"exec": [
+									"var date = new Date();",
+									"date.setDate(date.getDate() + 1); ",
+									"var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2) +\"T23:59:00\");",
+									"postman.setEnvironmentVariable(\"fly_date\", jsonData);",
+									"//var curr_date = d.getDate();",
+									"//var curr_month = d.getMonth() + 1;",
+									"//var curr_year = d.getFullYear();",
+									"//var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2) +\"T23:59:00\");",
+									"",
+									"//var jsonData = (curr_year + \"-\" + curr_month + \"-\" + curr_date +\"T23:59:00\");",
+									"",
+									"//var jsonData = new Date().toUTCString();",
+									"",
+									"//postman.setEnvironmentVariable(\"flyDate\", jsonData);",
+									"//postman.setEnvironmentVariable(\"flyDate\", \"2018-03-30T23:59:00\");",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6cce9dc3-4e6e-4701-b7bf-3061206b578d",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Code is 0\"] = jsonData.code === 0;",
+									"tests[\"Message is OK\"] = jsonData.message === \"OK\";",
+									"tests[\"Body matches string\"] = responseBody.has(\"price-resolved\");",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"var strfromJSON = jsonData.result.id;",
+									"postman.setEnvironmentVariable(\"id\", strfromJSON);",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"flightDate\": \"{{fly_date}}\",\r\n  \"flightNumber\": \"UA-141\",\r\n  \"flightOrigin\": \"Москва\",\r\n  \"flightDestination\": \"Минск\",\r\n  \"serviceId\": \"{{service_id}}\",\r\n  \"ticketClass\": \"\",\r\n  \"passengers\": [\r\n    {\r\n      \"firstName\": \"Иван\",\r\n      \"lastName\": \"Иванов\",\r\n      \"middleName\": \"Петрович\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"citizenship\": \"ru\",\r\n      \"passportData\": \"12345690\"\r\n    }\r\n   \r\n  ],\r\n  \"cars\": [\r\n    {\r\n      \"model\": \"ПАЗ\",\r\n      \"number\": \"КА1234БУ\"\r\n    }\r\n    \r\n  ],\r\n  \"attendants\": [\r\n    {\r\n      \"firstName\": \"Сергей\",\r\n      \"lastName\": \"Встрречающий\",\r\n      \"middleName\": \"\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"phone\": \"(541) 754-3010\"\r\n    },\r\n    {\r\n      \"firstName\": \"Сергей\",\r\n      \"lastName\": \"Встрречающий\",\r\n      \"middleName\": \"\",\r\n      \"birthDate\": \"1942-06-17\",\r\n      \"phone\": \"(541) 754-3010\"\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders?useAllServices=1",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "useAllServices",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Create an order."
+					},
+					"response": []
+				},
+				{
+					"name": "/orders?flightAfter=2018-03-01&flightBefore={{before_date}}",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3f92deee-f486-4b25-86da-92a50552a760",
+								"type": "text/javascript",
+								"exec": [
+									"var date = new Date();",
+									"date.setDate(date.getDate() + 1); ",
+									"var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2));",
+									"postman.setEnvironmentVariable(\"before_date\", jsonData);",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e3ed241f-0366-4c3f-a0ac-c66cdf90c97c",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var strfromJSON = jsonData._meta;",
+									"postman.setEnvironmentVariable(\"total_count\", strfromJSON.totalCount);",
+									"postman.setEnvironmentVariable(\"page_count\", strfromJSON.pageCount);",
+									"postman.setEnvironmentVariable(\"current_page\", strfromJSON.currentPage);",
+									"postman.setEnvironmentVariable(\"per_page\", strfromJSON.perPage);",
+									"",
+									"// тестируем статус ответа и формат",
+									"pm.test(\"Status is ok, response is json, code is 200\", function () {",
+									"    pm.response.to.be.success;",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"    pm.expect(pm.response).to.have.property('code', 200);",
+									"    pm.response.to.have.body();",
+									"    ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders?flightAfter=2018-03-01&flightBefore={{before_date}}",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "flightAfter",
+									"value": "2018-03-01"
+								},
+								{
+									"key": "flightBefore",
+									"value": "{{before_date}}"
+								}
+							]
+						},
+						"description": "zakaz c po"
+					},
+					"response": []
+				},
+				{
+					"name": "/orders?flightAfter=2018-03-01&flightBefore={{before_date}}&page={{page_count}} Последняя страница",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "93fb2709-2f0e-466d-acfe-989e7e5dcf9c",
+								"type": "text/javascript",
+								"exec": [
+									"var date = new Date();",
+									"date.setDate(date.getDate() + 1); ",
+									"var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2));",
+									"postman.setEnvironmentVariable(\"before_date\", jsonData);",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d49db5d3-6528-4efa-9941-eebf940fccaa",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var strfromJSON = jsonData._meta;",
+									"",
+									"// тестируем статус ответа и формат",
+									"pm.test(\"Status is ok, response is json, code is 200\", function () {",
+									"    pm.response.to.be.success;",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"    pm.expect(pm.response).to.have.property('code', 200);",
+									"    pm.response.to.have.body();",
+									"    ",
+									"});",
+									"",
+									"",
+									"pm.test(\"id from env is equal to id from response\", function () {",
+									"      pm.expect((pm.environment.get(\"total_count\"))).to.equal(String(pm.response.json()._meta.totalCount));",
+									"      //pm.expect((pm.environment.get(\"page_count\"))).to.equal(String(pm.response.json()._meta.pageCount));",
+									"      pm.expect((pm.environment.get(\"page_count\"))).to.equal(String(pm.response.json()._meta.currentPage));",
+									"      pm.expect((pm.environment.get(\"per_page\"))).to.equal(String(pm.response.json()._meta.perPage));",
+									"    ",
+									"});",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders?flightAfter=2018-03-01&flightBefore={{before_date}}&page={{page_count}}",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "flightAfter",
+									"value": "2018-03-01"
+								},
+								{
+									"key": "flightBefore",
+									"value": "{{before_date}}"
+								},
+								{
+									"key": "page",
+									"value": "{{page_count}}"
+								}
+							]
+						},
+						"description": "zakaz c po"
+					},
+					"response": []
+				},
+				{
+					"name": "/orders?flightAfter={{before_date}}&flightBefore={{before_date}}",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "244fa450-199f-47f9-a933-b1bd962e6571",
+								"type": "text/javascript",
+								"exec": [
+									"var date = new Date();",
+									"date.setDate(date.getDate() + 1); ",
+									"var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2));",
+									"postman.setEnvironmentVariable(\"before_date\", jsonData);",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e3ed241f-0366-4c3f-a0ac-c66cdf90c97c",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var strfromJSON = jsonData._meta;",
+									"postman.setEnvironmentVariable(\"total_count\", strfromJSON.totalCount);",
+									"postman.setEnvironmentVariable(\"page_count\", strfromJSON.pageCount);",
+									"postman.setEnvironmentVariable(\"current_page\", strfromJSON.currentPage);",
+									"postman.setEnvironmentVariable(\"per_page\", strfromJSON.perPage);",
+									"",
+									"// тестируем статус ответа и формат",
+									"pm.test(\"Status is ok, response is json, code is 200\", function () {",
+									"    pm.response.to.be.success;",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"    pm.expect(pm.response).to.have.property('code', 200);",
+									"    pm.response.to.have.body();",
+									"    ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders?flightAfter={{before_date}}&flightBefore={{before_date}}",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "flightAfter",
+									"value": "{{before_date}}"
+								},
+								{
+									"key": "flightBefore",
+									"value": "{{before_date}}"
+								}
+							]
+						},
+						"description": "zakaz c po"
+					},
+					"response": []
+				},
+				{
+					"name": "/orders Все показать",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "771addca-2a22-4985-b2b1-f8fb3ca8c9a0",
+								"type": "text/javascript",
+								"exec": [
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e3ed241f-0366-4c3f-a0ac-c66cdf90c97c",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var strfromJSON = jsonData._meta;",
+									"postman.setEnvironmentVariable(\"total_count\", strfromJSON.totalCount);",
+									"postman.setEnvironmentVariable(\"page_count\", strfromJSON.pageCount);",
+									"postman.setEnvironmentVariable(\"current_page\", strfromJSON.currentPage);",
+									"postman.setEnvironmentVariable(\"per_page\", strfromJSON.perPage);",
+									"",
+									"// тестируем статус ответа и формат",
+									"pm.test(\"Status is ok, response is json, code is 200\", function () {",
+									"    pm.response.to.be.success;",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"    pm.expect(pm.response).to.have.property('code', 200);",
+									"    pm.response.to.have.body();",
+									"    ",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders"
+							]
+						},
+						"description": "zakaz c po"
+					},
+					"response": []
+				},
+				{
+					"name": "/orders/{{id}} Показать выбранный предзаказ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "586ec949-23f9-40a8-ae8b-adc1ab05dec6",
+								"type": "text/javascript",
+								"exec": [
+									"//tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"//var jsonData = JSON.parse(responseBody);",
+									"",
+									"//tests[\"Body matches string\"] = responseBody.has(\"price-resolved\");",
+									"",
+									"// тестируем статус ответа и формат",
+									"pm.test(\"Status is ok, response is json\", function () {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"// проверим, что id из окружения равен id из ответа",
+									"pm.test(\"id from env is equal to id from response\", function () {",
+									"    ",
+									"    pm.expect((pm.environment.get(\"id\"))).to.equal(pm.response.json().id);",
+									"    ",
+									"",
+									"});",
+									"",
+									"//var jsonData = JSON.parse(responseBody);",
+									"//var idFromJSON = jsonData.result.id;",
+									"//postman.setEnvironmentVariable(\"id\", strfromJSON);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders/{{id}}",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cancel отменить предзаказ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ce797640-f68f-4685-8f76-afaacde1227c",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Code is 0\"] = jsonData.code === 0;",
+									"tests[\"Message is Cancelled\"] = jsonData.message === \"Cancelled\";",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders/{{id}}/cancel",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders",
+								"{{id}}",
+								"cancel"
+							]
+						},
+						"description": "cancel"
+					},
+					"response": []
+				},
+				{
+					"name": "/cancel повторно отменить предзаказ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "88013acf-1512-4481-a8bd-38726c2e7238",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Code is 2\"] = jsonData.code === 2;",
+									"tests[\"Message is Cancellation is not available\"] = jsonData.message === \"Cancellation is not available\";",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/orders/{{id}}/cancel",
+							"protocol": "http",
+							"host": [
+								"{{stage}}",
+								"{{domain}}"
+							],
+							"path": [
+								"partner",
+								"api",
+								"{{ver}}",
+								"orders",
+								"{{id}}",
+								"cancel"
+							]
+						},
+						"description": "cancel"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "calculation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dfae2582-7271-4222-a74d-c239e9e5ff95",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Code is 0\"] = jsonData.code === 0;",
+							"tests[\"Message is OK\"] = jsonData.message === \"OK\";",
+							"tests[\"Result with RUB\"] = responseBody.has(\" RUB\");",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"serviceId\": \"{{service_id}}\",\r\n  \"passengersCount\": \"{{passengers}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/calculation?useAllServices=1",
+					"protocol": "http",
+					"host": [
+						"{{stage}}",
+						"{{domain}}"
+					],
+					"path": [
+						"partner",
+						"api",
+						"{{ver}}",
+						"calculation"
+					],
+					"query": [
+						{
+							"key": "useAllServices",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "calculation для недоступной услуги",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "047fa588-05f0-42fb-a321-a242263bdcb8",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 422\"] = responseCode.code === 422;",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Result\"] = responseBody.has(\"Значение «ID-услуги» неверно.\");",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"serviceId\": \"{{service_id}}\",\r\n  \"passengersCount\": \"{{passengers}}\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{stage}}.{{domain}}/partner/api/{{ver}}/calculation",
+					"protocol": "http",
+					"host": [
+						"{{stage}}",
+						"{{domain}}"
+					],
+					"path": [
+						"partner",
+						"api",
+						"{{ver}}",
+						"calculation"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "cbef30fb-4f86-40d5-8afa-1996e1ac5368",
+				"type": "text/javascript",
+				"exec": [
+					"var date = new Date();",
+					"",
+					"var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2));",
+					"postman.setEnvironmentVariable(\"date_now\", jsonData);",
+					"",
+					"date.setDate(date.getDate() + 1); ",
+					"var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2) +\"T23:59:00\");",
+					"postman.setEnvironmentVariable(\"fly_date\", jsonData);",
+					"",
+					"",
+					"date.setDate(date.getDate() - 2);",
+					"var jsonData = (date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate(+1)).slice(-2));",
+					"postman.setEnvironmentVariable(\"old_date\", jsonData);",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "cfe0d41b-513d-4294-a199-8247b494ea27",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

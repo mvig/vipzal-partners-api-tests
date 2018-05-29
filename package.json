@@ -1,0 +1,15 @@
+{
+  "name": "test-api-partners",
+  "version": "1.0.0",
+  "description": "Project for storing Postman tests",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "api-tests-dev": "newman run tests/test-api-partners.postman_collection.json -e tests/dev.vipzal.dev.vip-zal.ru.postman_environment.json"
+  },
+  "author": "Igor Mets",
+  "dependencies": {
+    "newman": "^3.9.4"
+  }
+}
